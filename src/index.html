@@ -4,9 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>guestFinder</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <title>Guest Minder</title>
 </head>
+<header>
+  <div class="header-div-1">
+    <img src="/images/desk-bell.svg" alt=" ">
+    <h1>Guest Minder</h1>
+  </div>
+  <div class="header-div-2">
+    <h2>Today's Date: <span class="current-date" id="current-date-js">June 24, 2019</span></h2>
+    <h2>Customer: <span class="current-customer" id="current-customer-js">June 24,2019</span></h2>
+  </div>
+</header>
 <body>
-  
+  <div class="tabs">
+    <ul class="tabs-nav">
+      <li><a href="#main">Main</a></li>
+      <li><a href="#bookings">Bookings</a></li>
+      <li><a href="#orders">Orders</a></li>
+      <li><a href="#customer">Customer</a></li>
+    </ul>
+    <div class="tabs-content">
+      <div id="main">
+        <p>Dashboard</p>
+      </div>
+      <div id="bookings">
+        <p>Bookings Info</p>
+      </div>
+      <div id="orders">
+        <p>Order Info</p>
+      </div>
+      <div id="customer">
+        <p>Customer Info</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

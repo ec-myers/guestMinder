@@ -1,6 +1,104 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$background-color: rgba(206, 213, 231, 0.5);
+$border: 2px solid #9b9b9e;
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  background-color: $primary-background;
+  background-image: url('/images/background-img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  // background-position: center;
 }
+
+header {
+  align-items: center;
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+
+  .header-div-1 {
+    display: flex;
+    margin-left: 23px;
+  }
+
+    h1 {
+      font-size: 40px;
+      margin: 5px;
+      padding-top: 5px;
+    }
+
+    img {
+      height: 50px;
+      margin: 5px;
+    }
+
+  .header-div-2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+    h2 {
+      margin: 10px 15px 3px 0;
+    }
+}
+
+.tabs {
+  padding: 5px 20px 0 20px;;
+  
+  li {
+    list-style: none;
+    width: 100%;
+
+    a {
+      background: $background-color;
+      border-radius: 6px 6px 0 0;
+      border: $border;
+      color: black;
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 10px 0;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover {
+        color: #ff7b29;
+      }
+    }
+  }
+} 
+
+ul {
+  display: flex;
+}
+
+.tabs-content {
+  border: $border;
+  border-radius: 0 0 6px 6px;
+  border-top: 0;
+  clear: both;
+  height: 75vh;
+  padding: 24px 30px;
+  position: relative;
+  top: -1px;
+  background-color: $background-color;
+}
+
+.tab-active {
+  background: #D3D3D3;
+  border-radius: 6px 6px 0 0;
+  color: #2db34a;
+  cursor: default;
+  
+  a {
+    //not working
+    border-bottom: none;
+  }
+}
+
