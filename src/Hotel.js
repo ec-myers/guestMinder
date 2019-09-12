@@ -11,6 +11,13 @@ class Hotel {
     this.guests.push(guest);
   }
 
+  getNextAvailableGuestId() {
+    return this.guests.length + 1;
+  }
+
+  findGuestByName(guestName) {
+    return this.guests.find(guest => guestName.toLowerCase() === guest.name.toLowerCase());
+  }
 
 
 }

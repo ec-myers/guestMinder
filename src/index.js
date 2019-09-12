@@ -14,17 +14,9 @@ Promise.all([
   fetch ('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings').then(data => data.json()), 
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
   .then(data => data.json())])
-  .then(data => hotel = new Hotel(data[0].users, data[1].rooms, data[2].bookings, data[3].roomServices)).then(() => console.log(hotel))
-  // .then(data => hotel.instantiateHotel(data))
+  .then(data => hotel = new Hotel(data[0].users, data[1].rooms, data[2].bookings, data[3].roomServices));
 
-  
-console.log(hotel)
-// function instantiateHotel(data) {
-//   hotel = new Hotel(data);
-//     console.log(hotel)
-
-//   }
-
+//hide and show tabs
   $('.tabs-content div').hide();
   $('.tabs-content div:first').show();
   $('.tabs-nav li:first').addClass('tab-active');
@@ -37,3 +29,13 @@ console.log(hotel)
     $('.tabs-content div').hide();
     $($(this).attr('href')).show();
   });  
+
+$('#btn-add-guest').on('click', () => {
+  let newGuestName = $('#input-add-guest').val();
+  hotel.createNewGuest(hotel.getNextAvailableGuestId(), newGuestName);
+});
+
+$('#btn-search-guest').on('click', () => {
+  let searchGuestName = $('#input-search-guest').val();
+  hotel.findGuestByName(searchGuestName);
+});
