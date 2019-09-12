@@ -1,5 +1,7 @@
 $background-color: rgba(206, 213, 231, 0.5);
 $border: 2px solid #9b9b9e;
+$button-color: hsl(358,64,73);
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;;
@@ -27,6 +29,7 @@ header {
   }
 
     h1 {
+      color: #ffffff;
       font-size: 40px;
       margin: 5px;
       padding-top: 5px;
@@ -48,23 +51,31 @@ header {
     }
 }
 
+.tab-active {
+  background: #D3D3D3;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  color: #2db34a;
+  cursor: default;
+}
+
 .tabs {
   padding: 5px 20px 0 20px;;
   
   li {
+    background: $background-color;
+    border-radius: 6px 6px 0 0;
+    border: $border;
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
     list-style: none;
+    padding: 10px 0;
+    text-align: center;
     width: 100%;
 
     a {
-      background: $background-color;
-      border-radius: 6px 6px 0 0;
-      border: $border;
       color: black;
-      display: block;
-      font-size: 20px;
-      font-weight: 500;
-      padding: 10px 0;
-      text-align: center;
       text-decoration: none;
 
       &:hover {
@@ -76,29 +87,56 @@ header {
 
 ul {
   display: flex;
+  width: 50%;
 }
 
 .tabs-content {
-  border: $border;
+  // background-color: #D3D3D3;
+  background-color: $background-color;
   border-radius: 0 0 6px 6px;
   border-top: 0;
+  border: $border;
   clear: both;
   height: 75vh;
   padding: 24px 30px;
   position: relative;
   top: -1px;
-  background-color: $background-color;
 }
 
-.tab-active {
-  background: #D3D3D3;
-  border-radius: 6px 6px 0 0;
-  color: #2db34a;
-  cursor: default;
-  
-  a {
-    //not working
-    border-bottom: none;
-  }
+.form {
+  background: $background-color;
+  border: $border;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  width: 50%;
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 10px;
+    }
+
+    label {
+      margin-left: 10px;
+    }
+    input {
+      font-size: 16px;
+      height: 30px;
+      margin: 10px;
+      width: 200px;
+    }
+
+    button {
+      background-color: $button-color;
+      font-size: 16px;
+      height: 30px;
+      margin: 10px;
+      width: 200px;
+    }
+
 }
+
+
 
