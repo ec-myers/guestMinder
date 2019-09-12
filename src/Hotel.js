@@ -1,11 +1,16 @@
+import Guest from "./Guest";
+
 class Hotel {
-  constructor(guests, rooms, bookings, orders) {
-    this.guestsData = guests;
-    this.roomsData = rooms;
-    this.bookingsData = bookings;
-    this.ordersData = orders;
+  constructor(guestsData) {
     this.guests = [];
+    guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
   }
+
+  createNewGuest(id, name) {
+    let guest = new Guest(id, name);
+    this.guests.push(guest);
+  }
+
 
 
 }
