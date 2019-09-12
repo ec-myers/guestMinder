@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 import spies from 'chai-spies';
-import Customer from '../src/Customer.js'
+import Guest from '../src/Guest.js'
 
 chai.use(spies);
 // chai.spy.on(domUpdates,
@@ -9,18 +9,18 @@ chai.use(spies);
 //     '',
 //     ''], () => { });
 
-describe('Customer', () => {
-  let customer;
+describe('Guest', () => {
+  let guest;
 
   beforeEach( () => {
-    customer = new Customer();
+    guest = new Guest();
   });
 
   it('should be a function', () => {
-    expect(Customer).to.be.a('function');
+    expect(Guest).to.be.a('function');
   });
 
-  it('should be an instance of Customer', () => {
-    expect(customer).to.be.an.instanceOf(Customer);
+  it('should be an instance of Guest', () => {
+    expect(guest).to.be.an.instanceOf(Guest);
   });
 });

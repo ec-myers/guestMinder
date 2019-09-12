@@ -10,8 +10,8 @@ import Hotel from '../src/Hotel.js'
 //     ''], () => { });
 
 describe('Hotel', () => {
-  let guestsData;
-  let hotel;
+  let guestsData,
+      hotel;
 
   beforeEach( () => {
     guestsData = [{id: 1, name: "Matilde Larson"}];
@@ -29,5 +29,15 @@ describe('Hotel', () => {
   it('should be able to create a new guest', () => {
     hotel.createNewGuest(guestsData.id, guestsData.name);
     expect(hotel.guests.length).to.eql(2);
+  });
+
+  it('should determine the next available guest id', () => {
+    expect(hotel.getNextAvailableGuestId()).to.equal(2);
+  });
+
+  it('should find a guest by name', () => {
+    let guestName = 'Matilde Larson';
+    let guest = hotel.findGuestByName(guestName);
+    expect(guest.id).to.equal(1);
   });
 });
