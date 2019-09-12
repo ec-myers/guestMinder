@@ -1,13 +1,17 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from 'jquery';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import './images/desk-bell.svg';
+import './images/background-img.jpg';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+$('.tabs-content div').hide();
+$('.tabs-content div:first').show();
+$('.tabs-nav li:first').addClass('tab-active');
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// Change tab class and display content
+$('.tabs-nav a').on('click', function (event) {
+  event.preventDefault();
+  $('.tabs-nav li').removeClass('tab-active');
+  $(this).parent().addClass('tab-active');
+  $('.tabs-content div').hide();
+  $($(this).attr('href')).show();
+});
