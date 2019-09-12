@@ -14,7 +14,7 @@
   </div>
   <div class="header-div-2">
     <h2>Today's Date: <span class="current-date" id="current-date-js">June 24, 2019</span></h2>
-    <h2>Customer: <span class="current-customer" id="current-customer-js">June 24,2019</span></h2>
+    <h2>Customer: <span class="current-customer" id="current-customer-js"></span></h2>
   </div>
 </header>
 <body>
@@ -36,7 +36,18 @@
         <p>Order Info</p>
       </div>
       <div id="customer">
-        <p>Customer Info</p>
+        <div class="add-guest">
+          <p>Add a New Guest</p>
+          <label>Guest Name</label>
+          <input id="input-add-guest"type="text" placeholder="First and Last Name">
+          <button id="btn-add-guest">Submit</button>
+        </div>
+        <div class="search-guest">
+          <p>Search for a Guest</p>
+          <label>Guest Name</label>
+          <input id="input-search-guest" type="search" placeholder="First and Last Name">
+          <button id="btn-search-guest">Search</button>
+        </div>
       </div>
     </div>
   </div>
