@@ -3,6 +3,7 @@ import './css/base.scss';
 import './images/desk-bell.svg';
 import './images/background-img.jpg';
 import Hotel from './Hotel';
+import domUpdates from './domUpdates';
 
 let hotel;
 
@@ -17,18 +18,18 @@ Promise.all([
   .then(data => hotel = new Hotel(data[0].users, data[1].rooms, data[2].bookings, data[3].roomServices));
 
 //hide and show tabs
-  $('.tabs-content div').hide();
-  $('.tabs-content div:first').show();
-  $('.tabs-nav li:first').addClass('tab-active');
+$('.tabs-content div').hide();
+$('.tabs-content div:first').show();
+$('.tabs-nav li:first').addClass('tab-active');
   
   // Change tab class and display content
-  $('.tabs-nav a').on('click', function (event) {
-    event.preventDefault();
-    $('.tabs-nav li').removeClass('tab-active');
-    $(this).parent().addClass('tab-active');
-    $('.tabs-content div').hide();
-    $($(this).attr('href')).show();
-  });  
+$('.tabs-nav a').on('click', function (event) {
+  event.preventDefault();
+  $('.tabs-nav li').removeClass('tab-active');
+  $(this).parent().addClass('tab-active');
+  $('.tabs-content div').hide();
+  $($(this).attr('href')).show();
+});  
 
 $('#btn-add-guest').on('click', () => {
   let newGuestName = $('#input-add-guest').val();
@@ -36,6 +37,13 @@ $('#btn-add-guest').on('click', () => {
 });
 
 $('#btn-search-guest').on('click', () => {
-  let searchGuestName = $('#input-search-guest').val();
-  hotel.findGuestByName(searchGuestName);
+  let inputSearchGuest = $('#input-search-guest').val();
+  let foundSearchGuest = hotel.findGuestByName(inputSearchGuest);
+  if (foundSearchGuest === !'undefined') {
+    domUpdates.displayCurrentGuest(foundSearchGuest.name);
+  } else {
+    $('#error-search-guest').show();
+    $('#error-search-guest').html('This guest does not exist. Please add them above.');
+    $('#error-search-guest').fadeOut(8000);
+  }
 });

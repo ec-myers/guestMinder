@@ -13,8 +13,8 @@
     <h1>Guest Minder</h1>
   </div>
   <div class="header-div-2">
-    <h2>Today's Date: <span class="current-date" id="current-date-js">June 24, 2019</span></h2>
-    <h2>Customer: <span class="current-customer" id="current-customer-js"></span></h2>
+    <h2>Today's Date: <span class="current-date" id="current-date">June 24, 2019</span></h2>
+    <h2>Customer: <span class="current-customer" id="current-customer"></span></h2>
   </div>
 </header>
 <body>
@@ -46,6 +46,7 @@
           <p>Search for a Guest</p>
           <label>Guest Name</label>
           <input id="input-search-guest" type="search" placeholder=" first and last name">
+          <p class="error-search-guest" id="error-search-guest"></p>
           <button id="btn-search-guest">Search</button>
         </section>
       </div>
