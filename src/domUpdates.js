@@ -6,6 +6,6 @@ export default {
   },
 
   displayTodaysDate(todaysDate) {
-    $('#current-date').text (todaysDate);
+    $('#current-date').text(todaysDate);
   }
 }
