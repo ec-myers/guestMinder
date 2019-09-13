@@ -40,4 +40,10 @@ describe('Hotel', () => {
     let guest = hotel.findGuestByName(guestName);
     expect(guest.id).to.equal(1);
   });
+
+  it('should find a guest by id', () => {
+    let guestId = 1;
+    let guest = hotel.findGuestById(guestId);
+    expect(guest.name).to.equal('Matilde Larson');
+  });
 });
