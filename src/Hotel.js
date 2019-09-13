@@ -28,13 +28,17 @@ class Hotel {
     return this.guests.find(guest => guestName.toLowerCase() === guest.name.toLowerCase());
   }
 
+  findGuestById(guestId) {
+    return this.guests.find(guest => guestId === guest.id);
+  }
+
   findTodaysDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
 
-    this.todaysDate = today = yyyy + ' / ' + dd + ' / ' + mm;
+    this.todaysDate = today = yyyy + '/' + dd + '/' + mm;
   }
 }
 
