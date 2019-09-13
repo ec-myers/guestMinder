@@ -70,7 +70,7 @@ header {
   li {
     background: $background-color;
     border-radius: 6px 6px 0 0;
-    border: $border;
+    // border: $border;
     display: block;
     font-size: 20px;
     font-weight: 500;
@@ -90,6 +90,13 @@ header {
       }
     }
   }
+  .tab-active a {
+    background: #D3D3D3;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    cursor: default;
+    color: $accent-color;
+  }
 } 
 
 ul {
@@ -100,9 +107,9 @@ ul {
 .tabs-content {
   // background-color: #D3D3D3;
   background-color: $background-color;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
   border-top: 0;
-  border: $border;
+  // border: $border;
   clear: both;
   height: 75vh;
   padding: 24px 30px;
