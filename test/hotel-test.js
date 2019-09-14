@@ -18,8 +18,8 @@ describe('Hotel', () => {
     guestsData = [{id: 1, name: "Matilde Larson"}];
     ordersData = [{
       userID: 1,
-      date: "2019/07/29",
-      food: "Rustic Concrete Sandwich",
+      date: '2019/07/29',
+      food: 'Rustic Concrete Sandwich',
       totalCost: 14.9
     }]
     hotel = new Hotel(guestsData, ordersData);
@@ -58,5 +58,9 @@ describe('Hotel', () => {
     let guestId = 1;
     let guest = hotel.findGuestById(guestId);
     expect(guest.orders.length).to.equal(1);
-  })
+  });
+
+  it('should find all orders for a given day', () => {
+    expect(hotel.findAllOrdersByDate('2019/07/29').length).to.eql(1)
+  });
 });

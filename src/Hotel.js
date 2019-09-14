@@ -15,9 +15,15 @@ class Hotel {
   }
 
   start() {
+    this.findTodaysInformation();
+  }
+  
+  findTodaysInformation() {
     this.findTodaysDate();
-    console.log(typeof(this.todaysDate));
-    domUpdates.displayTodaysDate(this.todaysDate);
+    let orders = this.findAllOrdersByDate(this.todaysDate);
+    console.log(orders)
+    domUpdates.displayTodaysInformation(this.todaysDate, orders);
+
   }
 
   createNewGuest(id, name) {
@@ -44,7 +50,18 @@ class Hotel {
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
 
-    this.todaysDate = today = yyyy + '/' + dd + '/' + mm;
+    this.todaysDate = today = yyyy + '/' + mm + '/' + dd;
+  }
+
+  findAllOrdersByDate(date) {
+    return this.guests.reduce((acc, guest) => {
+      guest.orders.forEach(order => {
+        if (order.date === date) {
+          acc.push(order);
+        }
+      })
+      return acc;
+    }, [])
   }
 }
 
