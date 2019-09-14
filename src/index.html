@@ -27,13 +27,29 @@
     </ul>
     <div class="tabs-content">
       <div id="main">
-          <p>Dashboard</p>
       </div>
       <div id="bookings">
         <p>Bookings Info</p>
       </div>
       <div id="orders">
-        <p>Order Info</p>
+        <section>      
+           <p>Orders for Today <span class="all-orders" id="all-orders"></span></p>
+        </section>   
+        <section>
+          <p>Find Room Service Orders</p>
+          <input type="text" placeholder="customer name">
+          <button>Search</button>
+          <button>Clear</button>
+        </section>
+        <section>
+          <p>Place A Room Service Order</p>
+          <input type="text" placeholder="yyyy/mm/dd">
+          <button>Submit</button>
+          <button>Clear</button>
+        </section>
+        <section>
+          <p>Room Service History</p>
+        </section>
       </div>
       <div id="customer">
         <section class="add-guest form">

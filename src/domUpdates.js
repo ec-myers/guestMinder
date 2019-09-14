@@ -5,7 +5,12 @@ export default {
     $('#current-customer').text(currentGuest);
   },
 
-  displayTodaysDate(todaysDate) {
+  // displayAllOrders() {
+  //   $('#all-orders').text();
+  // },
+
+  displayTodaysInformation(todaysDate, orders) {
     $('#current-date').text(todaysDate);
+    $('#all-orders').text(orders);
   }
 }
