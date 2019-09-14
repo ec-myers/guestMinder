@@ -33,11 +33,11 @@ describe('Guest', () => {
   });
 
   it('should have zero orders to start', () => {
-    expect(guest.order.length).to.equal(0);
+    expect(guest.orders.length).to.equal(0);
   });
 
   it('should have correct orders for each guest', () => {
     guest.createOrder('2019/07/29', 'Rustic Concrete Sandwich', 14.9);
-    expect(guest.order.length).to.equal(1);
+    expect(guest.orders.length).to.equal(1);
   });
 });

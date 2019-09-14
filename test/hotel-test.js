@@ -11,11 +11,18 @@ import Hotel from '../src/Hotel.js'
 
 describe('Hotel', () => {
   let guestsData,
+      ordersData,
       hotel;
 
   beforeEach( () => {
     guestsData = [{id: 1, name: "Matilde Larson"}];
-    hotel = new Hotel(guestsData);
+    ordersData = [{
+      userID: 1,
+      date: "2019/07/29",
+      food: "Rustic Concrete Sandwich",
+      totalCost: 14.9
+    }]
+    hotel = new Hotel(guestsData, ordersData);
   });
 
   it('should be a function', () => {
@@ -46,4 +53,10 @@ describe('Hotel', () => {
     let guest = hotel.findGuestById(guestId);
     expect(guest.name).to.equal('Matilde Larson');
   });
+
+  it('should assign orders to the correct guest', () => {
+    let guestId = 1;
+    let guest = hotel.findGuestById(guestId);
+    expect(guest.orders.length).to.equal(1);
+  })
 });

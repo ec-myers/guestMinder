@@ -4,13 +4,13 @@ class Guest {
   constructor(id, name) {
     this.id = id;
     this.name = name;
-    this.order = [];
+    this.orders = [];
   }
 
   createOrder(date, food, totalCost) {
     let order = new Order(date, food, totalCost);
 
-    this.order.push(order);
+    this.orders.push(order);
   }
 }
 

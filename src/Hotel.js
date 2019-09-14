@@ -2,10 +2,16 @@ import domUpdates from './domUpdates.js'
 import Guest from './Guest';
 
 class Hotel {
-  constructor(guestsData) {
+  constructor(guestsData, ordersData) {
     this.guests = [];
     guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
     this.todaysDate = this.findTodaysDate();
+    ordersData.forEach(orderData => {
+      let guest = this.findGuestById(orderData.userID);
+
+      guest.createOrder(orderData.date, orderData.food, orderData.totalCost);
+    })
+    console.log(this.guests)
   }
 
   start() {
