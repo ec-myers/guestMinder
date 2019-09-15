@@ -131,6 +131,23 @@ class Hotel {
       return !bookings.some(booking => booking.roomNumber === room.number);
     });
   }
+
+  calculateTotalRevenueByDate(date) {
+    let orderRevenue = this.findAllOrdersByDate(date).reduce((acc, order) => {
+      return acc += order.totalCost;
+    }, 0);
+
+    let bookingsRevenue = this.findAllBookingsByDate(date).reduce((acc, booking) => {
+      this.rooms.filter(room => {
+        return room.number === booking.roomNumber;
+      }).forEach(room => {
+        acc += room.costPerNight;
+      })
+      return acc;
+    }, 0);
+
+    return Number((orderRevenue + bookingsRevenue).toFixed(2));
+  }
 }
 
 export default Hotel;

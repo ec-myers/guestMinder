@@ -45,6 +45,7 @@ class Guest {
 
     this.bookings.push(booking);
   }
+
 }
 
 export default Guest;

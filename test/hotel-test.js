@@ -113,7 +113,7 @@ describe('Hotel', () => {
     expect(hotel.findDateWithMostAvailableRooms()).to.equal('2019/07/30');
   });
 
-  it('should find room available by date', () => {
+  it('should find rooms available by date', () => {
     expect(hotel.findRoomsAvailableByDate('2019/07/29')).to.eql([{
       number: 2,
       type: 'junior suite',
@@ -122,5 +122,9 @@ describe('Hotel', () => {
       numBeds: 1,
       costPerNight: 216.05
     }]);
+  });
+
+  it('should calculate total revenue on a given day', () => {
+    expect(hotel.calculateTotalRevenueByDate('2019/07/29')).to.equal(279.93);
   });
 });
