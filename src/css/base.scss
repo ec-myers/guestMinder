@@ -1,6 +1,7 @@
-$background-color: rgba(206, 213, 231, 0.8);
+$active-background-color: rgba(206, 213, 231, 0.8);
+$inactive-background-color: rgba(206, 213, 231, 0.2);
 $border: 2px solid #9b9b9e;
-$accent-color: hsl(358,64,73);
+$accent-color: darken(hsl(358,64,73), 15%);
 $main-font-color: hsl(16,64,92);
 $active-font-color: darken(hsl(26,100,77), 15%);
 
@@ -24,6 +25,7 @@ header {
   height: 90px;
   justify-content: space-between;
   color: $main-font-color;
+  // background: rgba(206, 213, 231, 0.2);
 
   .header-div-1 {
     display: flex;
@@ -57,56 +59,74 @@ header {
 
 }
 
-.tab-active {
-  background: #D3D3D3;
-  border-bottom: none;
-  border-radius: 6px 6px 0 0;
-  cursor: default;
-}
+//tab display
+
+// .tab-active {
+//   background: #D3D3D3;
+//   border-bottom: none;
+//   border-radius: 6px 6px 0 0;
+//   cursor: default;
+// }
 
 .tabs {
-  padding: 5px 20px 0 20px;;
-  
+  padding: 5px 20px 0 20px;
+}  
+
+
+
+  .tab-active li {
+    background-color: $active-background-color;
+  }
+
+  .tab-active a {
+    // border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    cursor: default;
+    color: $accent-color;
+  }
+
+
+.tabs-nav {
+  display: flex;
+  width: 50%;
+  height: 43px;
+
   li {
-    background: $background-color;
+    background: $inactive-background-color;
     border-radius: 6px 6px 0 0;
     // border: $border;
     display: block;
     font-size: 20px;
     font-weight: 500;
     list-style: none;
-    padding: 10px 0;
+    // padding: 10px 0;
     text-align: center;
     width: 100%;
+    border: 2px solid grey;
+    border-bottom: none;
+    height: 100%;
 
-    a {
-      color: black;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 700;
-
+      a {
+        color: black;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 700;
+        // padding: 10px 0;
+          display:        flex;
+  flex-grow:      1;
+  flex-shrink:    1;
+  justify-content: center;
+ 
       &:hover {
         color: $active-font-color;
       }
     }
   }
-  .tab-active a {
-    background: #D3D3D3;
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
-    cursor: default;
-    color: $accent-color;
-  }
 } 
-
-ul {
-  display: flex;
-  width: 50%;
-}
 
 .tabs-content {
   // background-color: #D3D3D3;
-  background-color: $background-color;
+  background-color: $active-background-color;
   border-radius: 0 6px 6px 6px;
   border-top: 0;
   // border: $border;
@@ -114,11 +134,13 @@ ul {
   height: 75vh;
   padding: 24px 30px;
   position: relative;
-  top: -1px;
+  // top: -1px;
 }
 
+//Customer Tab
+
 .form {
-  background: $background-color;
+  background: $active-background-color;
   border: $border;
   display: flex;
   flex-direction: column;
@@ -164,7 +186,24 @@ ul {
       }
     }
 
-}
+  }
+  
+  //Order Tab
 
+.orders-tab {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 90%;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    background: $active-background-color;
+    border: $border;
+    width: 23%;
+    align-content: space-evenly;
+  }
+}
 
 
