@@ -13,6 +13,16 @@ class Guest {
     this.orders.push(order);
   }
 
+  createOrderBreakdownByDate() {
+    this.orders.reduce((acc, order) => {
+      if (!acc[order.date]) {
+        acc[order.date] = 0;
+      }
+      acc[order.date] += order.totalCost;
+      return acc;
+    }, {})
+  }
+
   findGuestTotalForOrdersByDate(date) {
     return this.orders.reduce((acc, order) => {
       if (order.date === date) {
