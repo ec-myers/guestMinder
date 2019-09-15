@@ -27,6 +27,16 @@ describe('Hotel', () => {
       userID: 1,
       date: '2019/07/29',
       roomNumber: 5
+    },
+    {
+      userID: 1,
+      date: '2019/07/30',
+      roomNumber: 5
+    },
+    {
+      userID: 1,
+      date: '2019/07/29',
+      roomNumber: 5
     }];
     hotel = new Hotel(guestsData, ordersData, bookingsData);
   });
@@ -71,10 +81,14 @@ describe('Hotel', () => {
   });
 
   it('should find all bookings', () => {
-    expect(hotel.findAllBookings().length).to.equal(1);
+    expect(hotel.findAllBookings().length).to.equal(3);
   });
 
-  it.only('should find the most popular booking date', () => {
-    expect(hotel.findMostPopularBookingDate()).to.equal('2019/07/29')
-  })
+  it('should find the most popular booking date', () => {
+    expect(hotel.findMostPopularBookingDate()).to.equal('2019/07/29');
+  });
+
+  it('should find the date with the most available rooms', () => {
+    expect(hotel.findDateWithMostAvailableRooms()).to.equal('2019/07/30');
+  });
 });
