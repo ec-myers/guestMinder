@@ -39,7 +39,7 @@ describe('Hotel', () => {
   });
 
   it('should determine the next available guest id', () => {
-    expect(hotel.getNextAvailableGuestId()).to.equal(2);
+    expect(hotel.findNextAvailableGuestId()).to.equal(2);
   });
 
   it('should find a guest by name', () => {

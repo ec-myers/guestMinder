@@ -10,10 +10,17 @@ import Guest from '../src/Guest.js'
 //     ''], () => { });
 
 describe('Guest', () => {
-  let guest;
+  let guest,
+      order;
 
   beforeEach( () => {
     guest = new Guest(99, 'Elyse');
+    order = {
+      userID: 1,
+      date: '2019/07/29',
+      food: 'Rustic Concrete Sandwich',
+      totalCost: 14.9
+    }
   });
 
   it('should be a function', () => {
@@ -39,5 +46,15 @@ describe('Guest', () => {
   it('should have correct orders for each guest', () => {
     guest.createOrder('2019/07/29', 'Rustic Concrete Sandwich', 14.9);
     expect(guest.orders.length).to.equal(1);
+  });
+
+  it('should find the total of a guest\'s orders by date', () => {
+    guest.orders.push(order);
+    expect(guest.findGuestTotalForOrdersByDate('2019/07/29')).to.equal(14.9);
+  });
+
+  it('should find the total for all of a guest\'s orders', () => {
+    guest.orders.push(order);
+    expect(guest.findGuestTotalForAllOrders()).to.equal(14.9);
   });
 });

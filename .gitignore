@@ -78,3 +78,9 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+../.DS_Store
+.DS_Store
+src/css/base.css
+src/css/base.css.map
+images/.DS_Store
