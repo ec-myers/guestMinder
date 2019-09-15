@@ -48,7 +48,7 @@ describe('Guest', () => {
     expect(guest.orders.length).to.equal(1);
   });
 
-  it.only('should calculate order totals by date', () => {
+  it('should calculate order totals by date', () => {
     guest.orders.push(order);
     expect(guest.createOrderBreakdownByDate()).to.equal();
   });

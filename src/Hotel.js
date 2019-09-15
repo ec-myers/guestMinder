@@ -2,7 +2,7 @@ import domUpdates from './domUpdates.js'
 import Guest from './Guest';
 
 class Hotel {
-  constructor(guestsData, ordersData) {
+  constructor(guestsData, ordersData, bookingsData) {
     this.guests = [];
     this.currentGuest;
     this.todaysDate = this.findTodaysDate();
@@ -10,6 +10,10 @@ class Hotel {
     ordersData.forEach(orderData => {
       let guest = this.findGuestById(orderData.userID);
       guest.createOrder(orderData.date, orderData.food, orderData.totalCost);
+    });
+    bookingsData.forEach(bookingData => {
+      let guest = this.findGuestById(bookingData.userID);
+      guest.createBooking(bookingData.date, bookingData.roomNumber);
     });
 
   }
@@ -62,6 +66,27 @@ class Hotel {
       })
       return acc;
     }, [])
+  }
+
+  findAllBookings() {
+    return this.guests.reduce((acc, guest) => {
+      guest.bookings.forEach(booking => {
+        acc.push(booking);
+      })
+      return acc;
+    }, []);
+  }
+
+  findMostPopularBookingDate() {
+
+  }
+
+  findMostAvailableRoomsByDate() {
+
+  }
+
+  findRoomsAvailableByDate(date) {
+
   }
 }
 

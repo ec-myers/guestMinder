@@ -12,17 +12,23 @@ import Hotel from '../src/Hotel.js'
 describe('Hotel', () => {
   let guestsData,
       ordersData,
+      bookingsData,
       hotel;
 
   beforeEach( () => {
-    guestsData = [{id: 1, name: "Matilde Larson"}];
+    guestsData = [{id: 1, name: 'Matilde Larson'}];
     ordersData = [{
       userID: 1,
       date: '2019/07/29',
       food: 'Rustic Concrete Sandwich',
       totalCost: 14.9
-    }]
-    hotel = new Hotel(guestsData, ordersData);
+    }];
+    bookingsData = [{
+      userID: 1,
+      date: '2019/07/29',
+      roomNumber: 5
+    }];
+    hotel = new Hotel(guestsData, ordersData, bookingsData);
   });
 
   it('should be a function', () => {
@@ -62,5 +68,9 @@ describe('Hotel', () => {
 
   it('should find all orders for a given day', () => {
     expect(hotel.findAllOrdersByDate('2019/07/29').length).to.eql(1)
+  });
+
+  it('should find all bookings', () => {
+    expect(hotel.findAllBookings().length).to.equal(1);
   });
 });

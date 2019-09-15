@@ -1,10 +1,12 @@
-import Order from "./Order";
+import Order from './Order';
+import Booking from './Booking';
 
 class Guest {
   constructor(id, name) {
     this.id = id;
     this.name = name;
     this.orders = [];
+    this.bookings = [];
   }
 
   createOrder(date, food, totalCost) {
@@ -36,6 +38,12 @@ class Guest {
     return this.orders.reduce((acc, order) => {
       return acc += order.totalCost;
     }, 0)
+  }
+
+  createBooking(date, roomNumber) {
+    let booking = new Booking(date, roomNumber);
+
+    this.bookings.push(booking);
   }
 }
 
