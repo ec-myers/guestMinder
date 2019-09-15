@@ -132,6 +132,14 @@ class Hotel {
     });
   }
 
+  findRoomsBookedByDate(date) {
+    let bookings = this.findAllBookingsByDate(date);
+
+    return this.rooms.filter(room => {
+      return bookings.some(booking => booking.roomNumber === room.number);
+    });
+  }
+
   calculateTotalRevenueByDate(date) {
     let orderRevenue = this.findAllOrdersByDate(date).reduce((acc, order) => {
       return acc += order.totalCost;
@@ -147,6 +155,10 @@ class Hotel {
     }, 0);
 
     return Number((orderRevenue + bookingsRevenue).toFixed(2));
+  }
+
+  calculatePercentageRoomsBookedByDate(date) {
+    return Number(parseFloat((this.findRoomsBookedByDate(date).length / this.rooms.length) * 100).toFixed(2));
   }
 }
 

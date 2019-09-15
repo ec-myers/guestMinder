@@ -48,13 +48,21 @@ describe('Hotel', () => {
       costPerNight: 265.03
     },
     {
-      number: 2,
+      number: 5,
       roomType: 'junior suite',
       bidet: true,
       bedSize: 'king',
       numBeds: 1,
       costPerNight: 216.05
-    }];
+    },
+      {
+        number: 2,
+        roomType: 'junior suite',
+        bidet: true,
+        bedSize: 'king',
+        numBeds: 1,
+        costPerNight: 216.05
+      }];
     hotel = new Hotel(guestsData, ordersData, bookingsData, roomsData);
   });
 
@@ -124,7 +132,15 @@ describe('Hotel', () => {
     }]);
   });
 
-  it('should calculate total revenue on a given day', () => {
-    expect(hotel.calculateTotalRevenueByDate('2019/07/29')).to.equal(279.93);
+  it('should find rooms booked by date', () => {
+    expect(hotel.findRoomsBookedByDate('2019/07/29').length).to.equal(2);
   });
+
+  it('should calculate total revenue on a given day', () => {
+    expect(hotel.calculateTotalRevenueByDate('2019/07/29')).to.equal(495.98);
+  });
+
+  it('should calculate the percentage of rooms booked for a given day', () => {
+    expect(hotel.calculatePercentageRoomsBookedByDate('2019/07/29')).to.equal(66.67);
+  })
 });
