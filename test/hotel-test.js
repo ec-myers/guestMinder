@@ -73,4 +73,8 @@ describe('Hotel', () => {
   it('should find all bookings', () => {
     expect(hotel.findAllBookings().length).to.equal(1);
   });
+
+  it.only('should find the most popular booking date', () => {
+    expect(hotel.findMostPopularBookingDate()).to.equal('2019/07/29')
+  })
 });

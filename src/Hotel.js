@@ -78,8 +78,20 @@ class Hotel {
   }
 
   findMostPopularBookingDate() {
+    let bookings = this.findAllBookings(); 
+    let dayTotals = bookings.reduce((acc, booking) => {
+      if (!acc[booking.date]) {
+        acc[booking.date] = []
+      }
+      acc[booking.date].push(booking);
+      return acc;
+    }, {});
 
+    return Object.keys(dayTotals).sort((a, b) => {
+      return dayTotals[b].length - dayTotals[a].length;
+    }).slice(0, 1)[0];
   }
+  
 
   findMostAvailableRoomsByDate() {
 
