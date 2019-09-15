@@ -4,14 +4,14 @@ import Guest from './Guest';
 class Hotel {
   constructor(guestsData, ordersData) {
     this.guests = [];
-    guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
+    this.currentGuest;
     this.todaysDate = this.findTodaysDate();
+    guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
     ordersData.forEach(orderData => {
       let guest = this.findGuestById(orderData.userID);
-
       guest.createOrder(orderData.date, orderData.food, orderData.totalCost);
-    })
-    console.log(this.guests)
+    });
+
   }
 
   start() {
@@ -28,11 +28,11 @@ class Hotel {
 
   createNewGuest(id, name) {
     let guest = new Guest(id, name);
-
     this.guests.push(guest);
+    return guest;
   }
 
-  getNextAvailableGuestId() {
+  findNextAvailableGuestId() {
     return this.guests.length + 1;
   }
 

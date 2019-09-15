@@ -31,21 +31,23 @@
       <div id="bookings">
         <p>Bookings Info</p>
       </div>
-      <div id="orders">
+      <div class="orders-tab" id="orders">
         <section>      
-           <p>Orders for Today <span class="all-orders" id="all-orders"></span></p>
+           <p>Orders for Today</p>
+             <span class="all-orders" id="all-orders"></span>
         </section>   
         <section>
           <p>Find Room Service Orders</p>
-          <input type="text" placeholder="customer name">
-          <button>Search</button>
-          <button>Clear</button>
+          <input id="input-search-orders"type="text" placeholder="yyyy/mm/dd">
+          <button id="btn-search-orders">Search</button>
+          <button id="btn-clear-orders">Clear</button>
+          <p id="search-orders"></p>
         </section>
         <section>
           <p>Place A Room Service Order</p>
-          <input type="text" placeholder="yyyy/mm/dd">
-          <button>Submit</button>
-          <button>Clear</button>
+          <input id="input-place-order"type="text" placeholder="yyyy/mm/dd">
+          <button id="btn-place-order">Submit</button>
+          <button id="btn-clear-order">Clear</button>
         </section>
         <section>
           <p>Room Service History</p>
