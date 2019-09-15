@@ -13,6 +13,7 @@ describe('Hotel', () => {
   let guestsData,
       ordersData,
       bookingsData,
+      roomsData,
       hotel;
 
   beforeEach( () => {
@@ -26,7 +27,7 @@ describe('Hotel', () => {
     bookingsData = [{
       userID: 1,
       date: '2019/07/29',
-      roomNumber: 5
+      roomNumber: 1
     },
     {
       userID: 1,
@@ -38,7 +39,23 @@ describe('Hotel', () => {
       date: '2019/07/29',
       roomNumber: 5
     }];
-    hotel = new Hotel(guestsData, ordersData, bookingsData);
+    roomsData = [{
+      number: 1,
+      roomType: 'residential suite',
+      bidet: false,
+      bedSize: 'twin',
+      numBeds: 1,
+      costPerNight: 265.03
+    },
+    {
+      number: 2,
+      roomType: 'junior suite',
+      bidet: true,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 216.05
+    }];
+    hotel = new Hotel(guestsData, ordersData, bookingsData, roomsData);
   });
 
   it('should be a function', () => {
@@ -84,11 +101,26 @@ describe('Hotel', () => {
     expect(hotel.findAllBookings().length).to.equal(3);
   });
 
+  it('should find all bookings by date', () => {
+    expect(hotel.findAllBookingsByDate('2019/07/29').length).to.equal(2);
+  });
+
   it('should find the most popular booking date', () => {
     expect(hotel.findMostPopularBookingDate()).to.equal('2019/07/29');
   });
 
   it('should find the date with the most available rooms', () => {
     expect(hotel.findDateWithMostAvailableRooms()).to.equal('2019/07/30');
+  });
+
+  it('should find room available by date', () => {
+    expect(hotel.findRoomsAvailableByDate('2019/07/29')).to.eql([{
+      number: 2,
+      type: 'junior suite',
+      bidet: true,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 216.05
+    }]);
   });
 });

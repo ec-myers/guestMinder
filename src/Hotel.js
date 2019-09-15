@@ -1,11 +1,13 @@
 import domUpdates from './domUpdates.js'
 import Guest from './Guest';
+import Room from './Room.js';
 
 class Hotel {
-  constructor(guestsData, ordersData, bookingsData) {
+  constructor(guestsData, ordersData, bookingsData, roomsData) {
     this.guests = [];
     this.currentGuest;
     this.todaysDate = this.findTodaysDate();
+    this.rooms = [];
     guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
     ordersData.forEach(orderData => {
       let guest = this.findGuestById(orderData.userID);
@@ -15,7 +17,7 @@ class Hotel {
       let guest = this.findGuestById(bookingData.userID);
       guest.createBooking(bookingData.date, bookingData.roomNumber);
     });
-
+    roomsData.forEach(roomData => this.createRoom(roomData.number,                roomData.roomType, roomData.bidet, roomData.bedSize, roomData.numBeds,      roomData.costPerNight));
   }
 
   start() {
@@ -34,6 +36,11 @@ class Hotel {
     let guest = new Guest(id, name);
     this.guests.push(guest);
     return guest;
+  }
+
+  createRoom(roomNumber, roomType, bidet, bedSize, numBeds, costPerNight) {
+    let room = new Room(roomNumber, roomType, bidet, bedSize, numBeds, costPerNight);
+    this.rooms.push(room);
   }
 
   findNextAvailableGuestId() {
@@ -77,6 +84,17 @@ class Hotel {
     }, []);
   }
 
+  findAllBookingsByDate(date) {
+    return this.guests.reduce((acc, guest) => {
+      guest.bookings.forEach(booking => {
+        if (booking.date === date) {
+          acc.push(booking);
+        }
+      })
+      return acc;
+    }, []);
+  }
+
   findMostPopularBookingDate() {
     let bookings = this.findAllBookings(); 
     let dayTotals = bookings.reduce((acc, booking) => {
@@ -92,7 +110,6 @@ class Hotel {
     }).slice(0, 1)[0];
   }
   
-
   findDateWithMostAvailableRooms() {
     let bookings = this.findAllBookings(); 
     let dayTotals = bookings.reduce((acc, booking) => {
@@ -108,7 +125,11 @@ class Hotel {
   }
 
   findRoomsAvailableByDate(date) {
+    let bookings = this.findAllBookingsByDate(date);
 
+    return this.rooms.filter(room => {
+      return !bookings.some(booking => booking.roomNumber === room.number);
+    });
   }
 }
 
