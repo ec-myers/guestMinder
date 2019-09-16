@@ -61,6 +61,9 @@ $('#btn-search-guest').on('click', () => {
     domUpdates.displayCurrentGuest(foundSearchGuest.name);
     hotel.currentGuest = foundSearchGuest;
     domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
+    let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
+    let allTotal = hotel.currentGuest.findGuestTotalForAllOrders(hotel.todaysDate);
+    domUpdates.displayOrderTotalsForGuest(dayTotal, allTotal);
     console.log(hotel.currentGuest)
   } else {
     domUpdates.displaySearchError();
@@ -95,6 +98,14 @@ $('.list-menu-items').on('click', '.btn-order-food', (e) => {
   hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, this.dataset.food, this.dataset.cost);
 })
 
+// rooms tab --------->
+
+$('#btn-search-rooms').on('click', () => {
+  let inputSearchDate = $('#input-search-rooms').val();
+  let roomsAvailable = hotel.findRoomsAvailableByDate(inputSearchDate);
+
+  domUpdates.displayAvailableRooms(roomsAvailable);
+})
 // setTimeout(() => {
 // var ctx = $('#revenue-chart');
 // var todaysRevenue = new Chart(ctx, {

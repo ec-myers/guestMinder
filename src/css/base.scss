@@ -1,7 +1,7 @@
 $active-background-color: rgba(206, 213, 231, 0.8);
 $inactive-background-color: rgba(206, 213, 231, 0.2);
 $border: 2px solid #9b9b9e;
-$accent-color: darken(hsl(358,64,73), 15%);
+$accent-color: darken(hsl(358,64,73), 8%);
 $main-font-color: hsl(16,64,92);
 $active-font-color: darken(hsl(358,64,73), 8%);
 
@@ -55,8 +55,7 @@ header {
       span {
         color: $accent-color;
     }
-    }
-
+  }
 }
 
 //tab display
@@ -154,6 +153,7 @@ header {
 
 .form {
   background: $active-background-color;
+  border-radius: 5px;
   border: $border;
   display: flex;
   flex-direction: column;
@@ -374,7 +374,7 @@ border: $border;
     list-style-type: none;
 
     h6 {
-      font-size: 14px;
+      font-size: 16px;
     }
   }
 }
@@ -384,8 +384,18 @@ border: $border;
   border: $border;
   border-radius: 5px;
   margin: 10px 0 10px 0;
-  padding: 10px;
+  padding: 30px;
+
+  h6 {
+    text-align: center;
+    font-size: 32px;
+  }
+
+    // span {
+
+    // }
 }
+
 .tabs {
   padding: 5px 20px 0 20px;
   // color: black;

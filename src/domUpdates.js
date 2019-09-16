@@ -59,6 +59,11 @@ export default {
     });
   },
 
+  displayOrderTotalsForGuest(dayTotal, allTotal) {
+    $('#order-charges-day').text(dayTotal);
+    $('#order-charges-total').text(allTotal);
+  },
+
   displayBookingsStats(most, least) {
     $('#most-popular-date').text(most);
     $('#least-popular-date').text(least);
@@ -66,17 +71,16 @@ export default {
 
   displayAvailableRooms(roomsData) {
     roomsData.forEach(room => {
-      $('#table-available-rooms').append(
+      $('.tbody-available-rooms').append(
         `<tr class="pointer" id=rooms-${room.number}>
             <td id="num">${room.number}</td>
-            <td id="roomType">${room.roomType}</td>
+            <td id="type">${room.type}</td>
             <td id="bidet">${room.bidet}</td>
             <td id="bedSize">${room.bedSize}</td>
             <td id="numBeds">${room.numBeds}</td>
             <td id="costPerNight">$${room.costPerNight}</td>
-            <td>Add</td>
           </tr>`
-      )
-    })
+      );
+    });
   }
 }
