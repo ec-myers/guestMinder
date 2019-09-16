@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Guest from './Guest';
 
 export default {
   displayCurrentGuest(currentGuest) {
@@ -10,25 +11,72 @@ export default {
     $('#error-search-guest').html('This guest was not found. Please add them above.');
     $('#error-search-guest').fadeOut(8000);
   },
-  // displayAllOrders() {
-  //   $('#all-orders').text();
-  // },
 
-  displayTodaysInformation(todaysDate, orders, availability, occupancy, revenue) {
+  displayTodaysInformation(todaysDate, availability, occupancy, revenue) {
     $('#current-date').text(todaysDate);
-    $('#all-orders').text(orders);
-    $('#room-availability-today').text(availability)
+    $('#room-availability-today').text(availability);
     $('#occupancy-today').text(occupancy);
     $('#total-revenue-today').text(revenue);
   },
 
-  displaySearchOrders(orders) {
-    $('#search-orders').text(orders);
+  displayAllOrders(orders) {
+    orders.forEach(order => {
+      let food = order.foodItems;
+      let cost = order.totalCost;
+      let item = $(`<li><h6> &#8226; ${food}, $${cost.toFixed(2)}</h6></li>`);
+      $('.all-orders').append(item);
+    });
+  },
+
+  displaySearchOrders(date, orders) {
+    $('#search-orders-date').append($(`<h5>Orders for ${date}</h5>`));
+    orders.forEach(order => {
+      let food = order.foodItems;
+      let cost = order.totalCost;
+      let item = $(`<li><h6> &#8226; ${food}, $${cost.toFixed(2)}</h6></li>`);
+      $('#search-orders').append(item);
+    });
+  },
+
+  clearSearchOrders() {
+    $('#search-orders-date').empty();
+    $('#search-orders').empty();
   },
 
   displayMenu(food, cost) {
-    let menuItems = $(`<li><button class='btn-order-food' data-food='${food}' data-cost='${cost}'>Place Order</button><h5>${food} $${cost}</h5></li><br>`);
+    let menuItems = $(`<li><button class='btn-order-food' id='btn-order-food' data-food='${food}' data-cost='${cost}'>Order</button><h5>${food} $${cost}</h5></li><br>`);
     $('.list-menu-items').append(menuItems);
   },
 
+  displayOrdersForGuest(guestOrders) {
+    $('#list-order-history').html('');
+    console.log(guestOrders)
+    guestOrders.forEach(order => {
+    let ordersList = $(`<li><h6 class='right'> &#8226; ${order.date}, ${order.foodItems}, $${order.totalCost.toFixed(2)} </h6></li>`);
+
+    console.log(ordersList)
+      $('#list-order-history').append(ordersList)
+    });
+  },
+
+  displayBookingsStats(most, least) {
+    $('#most-popular-date').text(most);
+    $('#least-popular-date').text(least);
+  },
+
+  displayAvailableRooms(roomsData) {
+    roomsData.forEach(room => {
+      $('#table-available-rooms').append(
+        `<tr class="pointer" id=rooms-${room.number}>
+            <td id="num">${room.number}</td>
+            <td id="roomType">${room.roomType}</td>
+            <td id="bidet">${room.bidet}</td>
+            <td id="bedSize">${room.bedSize}</td>
+            <td id="numBeds">${room.numBeds}</td>
+            <td id="costPerNight">$${room.costPerNight}</td>
+            <td>Add</td>
+          </tr>`
+      )
+    })
+  }
 }

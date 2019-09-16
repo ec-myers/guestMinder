@@ -14,15 +14,15 @@
     <h1>Guest Minder</h1>
   </div>
   <div class="header-div-2">
-    <h2>Today's Date : <span class="current-date" id="current-date">June 24, 2019</span></h2>
-    <h2>Customer : <span class="current-customer" id="current-customer"></span></h2>
+    <h2>Today's Date: <span class="current-date" id="current-date">June 24, 2019</span></h2>
+    <h2>Viewing: <span class="current-customer" id="current-customer">All Customers</span></h2>
   </div>
 </header>
 <body>
   <div class="tabs">
     <ul class="tabs-nav">
       <li><a href="#main">Main</a></li>
-      <li><a href="#bookings">Bookings</a></li>
+      <li><a href="#rooms">Rooms</a></li>
       <li><a href="#orders">Orders</a></li>
       <li><a href="#customer">Customer</a></li>
     </ul>
@@ -39,36 +39,39 @@
         <canvas id="occupancy-chart" width="300" height="150"></canvas>
         </section>
       </div>
-      <div id="bookings">
+      <div id="rooms">
         <section>
+          <p>The most popular booking date is <span id="most-popular-date"></span></p>
+          <p>The greatest room availability is on <span id="least-popular-date"></span></p>
           <p>Find Available Rooms</p>
           <input id="input-search-rooms" type="text" placeholder="yyyy/mm/dd">
           <button id="btn-search-rooms">Search</button>
           <button id="btn-clear-rooms">Clear</button>
-          <p id="search-rooms"></p>
+          <container>
+            <tb id="table-available-rooms"></tb>
+          </container>
         </section>
       </div>
       <div class="orders-tab" id="orders">
         <section>      
            <p>Orders for Today</p>
-             <span class="all-orders" id="all-orders"></span>
+             <ul class="all-orders" id="all-orders"></ul>
         </section>   
         <section>
           <p>Find Room Service Orders</p>
           <input id="input-search-orders"type="text" placeholder="yyyy/mm/dd">
-          <button id="btn-search-orders">Search</button>
+          <button id="btn-search-orders" disabled>Search</button>
           <button id="btn-clear-orders">Clear</button>
-          <p id="search-orders"></p>
+          <p id="search-orders-date"></p>
+          <ul id="search-orders"></ul>
         </section>
         <section>
           <p>Place A Room Service Order</p>
-          <input id="input-place-order"type="text" placeholder="yyyy/mm/dd">
-          <button id="btn-place-order">Submit</button>
-          <button id="btn-clear-order">Clear</button>
           <ul class="list-menu-items"></ul>
         </section>
         <section>
-          <p>Room Service History</p>
+          <p>Customer Order History</p>
+          <ul class="list-order-history" id="list-order-history"></ul>
         </section>
       </div>
       <div id="customer">

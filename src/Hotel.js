@@ -25,7 +25,7 @@ class Hotel {
     this.findTodaysDate();
     this.findTodaysInformation(this.todaysDate);
     this.createMenu();
-    console.log(this.menu)
+    this.findAllOrdersByDate();
   }
   
   findTodaysInformation(date) {
@@ -33,10 +33,12 @@ class Hotel {
     let availableRooms = this.findRoomsBookedByDate(date).length;
     let occupancy = this.calculatePercentageRoomsBookedByDate(date);
     let revenue = this.calculateTotalRevenueByDate(date);
-    console.log(orders, availableRooms, occupancy, revenue)
+    let mostPopular = this.findMostPopularBookingDate(date);
+    let leastPopular = this.findDateWithMostAvailableRooms(date);
 
-    domUpdates.displayTodaysInformation(date, orders, availableRooms, occupancy, revenue);
-
+    domUpdates.displayTodaysInformation(date, availableRooms, occupancy, revenue);
+    domUpdates.displayAllOrders(orders);
+    domUpdates.displayBookingsStats(mostPopular, leastPopular);
   }
 
   createNewGuest(id, name) {
@@ -75,9 +77,10 @@ class Hotel {
     return this.guests.reduce((acc, guest) => {
       guest.orders.forEach(order => {
         acc.push(order);
-      })
+      });
       return acc;
     }, []);
+
   }
 
   findAllOrdersByDate(date) {
@@ -86,9 +89,9 @@ class Hotel {
         if (order.date === date) {
           acc.push(order);
         }
-      })
+      });
       return acc;
-    }, [])
+    }, []);
   }
 
   findAllBookings() {

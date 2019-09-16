@@ -5,6 +5,7 @@ import './images/background-img.jpg';
 import Hotel from './Hotel.js';
 import domUpdates from './domUpdates.js';
 import Chart from 'chart.js';
+import Guest from './Guest';
 
 let hotel;
 
@@ -59,48 +60,69 @@ $('#btn-search-guest').on('click', () => {
   if (foundSearchGuest !== undefined) {
     domUpdates.displayCurrentGuest(foundSearchGuest.name);
     hotel.currentGuest = foundSearchGuest;
+    domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
+    console.log(hotel.currentGuest)
   } else {
     domUpdates.displaySearchError();
   }
 });
 
 //order tab ------------>
+$('#input-search-orders').on('keypress', () => {
+  $('#btn-search-orders').attr('disabled', false);
+});
+
+$('#btn-clear-orders').on('click', () => {
+  domUpdates.clearSearchOrders();
+});
 
 $('#btn-search-orders').on('click', () => {
   let inputSearchDate = $('#input-search-orders').val();
   let orders = hotel.findAllOrdersByDate(inputSearchDate);
-  domUpdates.displaySearchOrders(orders);
+  domUpdates.displaySearchOrders(inputSearchDate, orders);
   $('#input-search-orders').val('');
+  $('#btn-search-orders').attr('disabled', true);
 });
 
-setTimeout(() => {
-var ctx = $('#revenue-chart');
-var todaysRevenue = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: [hotel.todaysDate],
-    datasets: [{
-      label: 'dollars',
-      data: hotel.calculateTotalRevenueByDate(hotel.todaysDate),
-      backgroundColor: [
-        'rgb(221, 160, 221, 1)',
-      ],
-      borderColor: [
-        'rgba(221, 160, 221, 1)',
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    legend: {
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});  
-}, 1000)
+$('.list-menu-items').on('click', '.btn-order-food', (e) => {
+  e.preventDefault();
+  let food = $(e.target).closest('li').data('food');
+  // let food = $('.list-menu-items').find('#btn-order-food').data('food');
+  // let food = $('.btn-order-food').data('food');
+  // let cost = $('.btn-order-food').data('cost');
+  console.log(this.dataset.food, this.dataset.cost)
+  console.log(hotel.currentGuest)
+  hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, this.dataset.food, this.dataset.cost);
+})
+
+// setTimeout(() => {
+// var ctx = $('#revenue-chart');
+// var todaysRevenue = new Chart(ctx, {
+//   type: 'bar',
+//   data: {
+//     labels: [hotel.todaysDate],
+//     datasets: [{
+//       label: 'dollars',
+//       data: hotel.calculateTotalRevenueByDate(hotel.todaysDate),
+//       backgroundColor: [
+//         'rgb(221, 160, 221, 1)',
+//       ],
+//       borderColor: [
+//         'rgba(221, 160, 221, 1)',
+//       ],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     legend: {
+//     },
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero: true
+//         }
+//       }]
+//     }
+//   }
+// });  
+// }, 1000)

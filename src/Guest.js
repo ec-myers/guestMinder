@@ -1,5 +1,6 @@
 import Order from './Order';
 import Booking from './Booking';
+import domUpdates from './domUpdates';
 
 class Guest {
   constructor(id, name) {
@@ -46,6 +47,14 @@ class Guest {
     this.bookings.push(booking);
   }
 
+  createRoomServiceOrder(date, food, cost) {
+    this.orders.push({
+      date,
+      foodItems: food,
+      totalCost: cost
+    });
+    domUpdates.displayOrdersForGuest(this.orders);
+  }
 }
 
 export default Guest;
