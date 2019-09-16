@@ -68,32 +68,17 @@ header {
 //   cursor: default;
 // }
 
-.tabs {
-  padding: 5px 20px 0 20px;
-}  
 
-
-
-  .tab-active li {
-    background-color: $active-background-color;
-  }
-
-  .tab-active a {
-    // border-bottom: none;
-    border-radius: 6px 6px 0 0;
-    cursor: default;
-    color: $accent-color;
-  }
 
 
 .tabs-nav {
   display: flex;
-  width: 50%;
+  width: 60%;
   height: 43px;
 
   li {
     background: $inactive-background-color;
-    border-radius: 6px 6px 0 0;
+    border-radius: 5px 5px 0 0;
     // border: $border;
     display: block;
     font-size: 20px;
@@ -102,20 +87,22 @@ header {
     // padding: 10px 0;
     text-align: center;
     width: 100%;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-bottom: none;
     height: 100%;
+    margin: 0 4px 0 0;
 
       a {
         color: black;
         text-decoration: none;
         font-size: 20px;
         font-weight: 700;
-        // padding: 10px 0;
-          display:        flex;
-  flex-grow:      1;
-  flex-shrink:    1;
-  justify-content: center;
+        height: 100%;
+        padding: 5px 0;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        justify-content: center;
  
       &:hover {
         color: $active-font-color;
@@ -136,6 +123,32 @@ header {
   position: relative;
   // top: -1px;
 }
+
+//Main Tab
+
+#main {
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.todays-stats {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background: rgba(206, 213, 231, 0.8);
+  border: 2px solid #9b9b9e;
+  width: 23%;
+  align-content: space-evenly;
+}
+
+.main-charts {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 300px;
+}
+
 
 //Customer Tab
 
@@ -204,6 +217,36 @@ header {
     width: 23%;
     align-content: space-evenly;
   }
+
+  ul {
+    display:flex;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  li {
+    display:flex;
+    flex-direction: row;
+  }
 }
+
+.tabs {
+  padding: 5px 20px 0 20px;
+  // color: black;
+} 
+
+  .tab-active li {
+    background-color: $active-background-color;
+  }
+
+  .tab-active a {
+    background-color: $active-background-color;
+    // border-bottom: none;
+    border-radius: 5px 5px 0 0;
+    cursor: default;
+    color: $accent-color;
+    height: 100%;
+  }
 
 

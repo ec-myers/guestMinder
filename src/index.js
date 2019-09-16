@@ -2,8 +2,9 @@ import $ from 'jquery';
 import './css/base.scss';
 import './images/suitcase.svg';
 import './images/background-img.jpg';
-import Hotel from './Hotel';
-import domUpdates from './domUpdates';
+import Hotel from './Hotel.js';
+import domUpdates from './domUpdates.js';
+import Chart from 'chart.js';
 
 let hotel;
 
@@ -15,7 +16,7 @@ Promise.all([
   fetch ('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')  .then(data => data.json()), 
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/room-services/roomServices')
     .then(data => data.json())])
-  .then(data => hotel = new Hotel(data[0].users, data[3].roomServices, data[1].rooms, data[2].bookings))
+  .then(data => hotel = new Hotel(data[0].users, data[3].roomServices, data[2].bookings, data[1].rooms))
     .then(data => console.log(data))
     .then(data => hotel.start())
 
@@ -32,6 +33,13 @@ $('.tabs-nav a').on('click', function (event) {
   $('.tabs-content div').hide();
   $($(this).attr('href')).show();
 }); 
+
+
+$('#main').on('click', () => {
+  console.log(hotel.createMenu());
+
+})
+
 
 //guest tab ---------->
 
@@ -64,3 +72,35 @@ $('#btn-search-orders').on('click', () => {
   domUpdates.displaySearchOrders(orders);
   $('#input-search-orders').val('');
 });
+
+setTimeout(() => {
+var ctx = $('#revenue-chart');
+var todaysRevenue = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [hotel.todaysDate],
+    datasets: [{
+      label: 'dollars',
+      data: hotel.calculateTotalRevenueByDate(hotel.todaysDate),
+      backgroundColor: [
+        'rgb(221, 160, 221, 1)',
+      ],
+      borderColor: [
+        'rgba(221, 160, 221, 1)',
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    legend: {
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});  
+}, 1000)

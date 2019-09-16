@@ -8,6 +8,7 @@ class Hotel {
     this.currentGuest;
     this.todaysDate = this.findTodaysDate();
     this.rooms = [];
+    this.menu = [];
     guestsData.forEach(guestData => this.createNewGuest(guestData.id, guestData.name));
     ordersData.forEach(orderData => {
       let guest = this.findGuestById(orderData.userID);
@@ -21,14 +22,20 @@ class Hotel {
   }
 
   start() {
-    this.findTodaysInformation();
+    this.findTodaysDate();
+    this.findTodaysInformation(this.todaysDate);
+    this.createMenu();
+    console.log(this.menu)
   }
   
-  findTodaysInformation() {
-    this.findTodaysDate();
-    let orders = this.findAllOrdersByDate(this.todaysDate);
-    console.log(orders)
-    domUpdates.displayTodaysInformation(this.todaysDate, orders);
+  findTodaysInformation(date) {
+    let orders = this.findAllOrdersByDate(date);
+    let availableRooms = this.findRoomsBookedByDate(date).length;
+    let occupancy = this.calculatePercentageRoomsBookedByDate(date);
+    let revenue = this.calculateTotalRevenueByDate(date);
+    console.log(orders, availableRooms, occupancy, revenue)
+
+    domUpdates.displayTodaysInformation(date, orders, availableRooms, occupancy, revenue);
 
   }
 
@@ -62,6 +69,15 @@ class Hotel {
     let yyyy = today.getFullYear();
 
     this.todaysDate = today = yyyy + '/' + mm + '/' + dd;
+  }
+
+  findAllOrders() {
+    return this.guests.reduce((acc, guest) => {
+      guest.orders.forEach(order => {
+        acc.push(order);
+      })
+      return acc;
+    }, []);
   }
 
   findAllOrdersByDate(date) {
@@ -159,6 +175,24 @@ class Hotel {
 
   calculatePercentageRoomsBookedByDate(date) {
     return Number(parseFloat((this.findRoomsBookedByDate(date).length / this.rooms.length) * 100).toFixed(2));
+  }
+
+  createMenu() {
+    this.menu = this.findAllOrders().reduce((acc, order) => {
+      if (!acc.includes({
+        food: order.foodItems,
+        cost: order.totalCost
+      })) {
+        acc.push({
+          food: order.foodItems,
+          cost: order.totalCost
+        });
+      }
+      return acc;
+    }, []);
+    this.menu.forEach(item => {
+      domUpdates.displayMenu(item.food, item.cost)
+    });
   }
 }
 

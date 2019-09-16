@@ -142,5 +142,12 @@ describe('Hotel', () => {
 
   it('should calculate the percentage of rooms booked for a given day', () => {
     expect(hotel.calculatePercentageRoomsBookedByDate('2019/07/29')).to.equal(66.67);
-  })
+  });
+
+  it('should create a menu', () => {
+    hotel.createMenu();
+    expect(hotel.menu).to.eql([{
+      food: 'Rustic Concrete Sandwich',
+      cost: 14.9}]);
+  });
 });
