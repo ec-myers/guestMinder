@@ -3,7 +3,7 @@ $inactive-background-color: rgba(206, 213, 231, 0.2);
 $border: 2px solid #9b9b9e;
 $accent-color: darken(hsl(358,64,73), 15%);
 $main-font-color: hsl(16,64,92);
-$active-font-color: darken(hsl(26,100,77), 15%);
+$active-font-color: darken(hsl(358,64,73), 8%);
 
 * {
   box-sizing: border-box;
@@ -181,6 +181,7 @@ header {
       height: 30px;
       margin: 10px;
       width: 200px;
+      padding-left: 5px;
     }
 
     button {
@@ -207,15 +208,26 @@ header {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 90%;
+  height: 95%;
 
   section {
     display: flex;
     flex-direction: column;
     background: $active-background-color;
+    border-radius: 5px;
     border: $border;
     width: 23%;
+    padding: 10px;
     align-content: space-evenly;
+
+    p {
+      text-align: center;
+      font-weight: 700;
+      background-color: $active-font-color;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+    }
   }
 
   ul {
@@ -231,6 +243,149 @@ header {
   }
 }
 
+.all-orders {
+margin: 10px;
+padding: 8px;
+background: $active-background-color;
+margin: 10px 10px 35px 10px;
+display: flex;
+flex-direction: column;
+padding: 10px;
+border-radius: 5px;
+margin: 10px 0 10px 0;
+border: $border;
+
+  li {
+
+    h6 {
+      font-size: 16px;
+    }
+  } 
+}
+
+.container-search-orders {
+  background: $active-background-color;
+  margin: 10px 10px 35px 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  border: $border;
+
+  label {
+    margin-left: 10px;
+  }
+
+  input {
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 30px;
+    margin: 10px;
+    padding-left: 5px;
+  }
+
+  button {
+    background-color: $accent-color;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 35px;
+    margin: 10px;
+
+    &:hover {
+      background: hsla(0,0,43, 0.2);
+      color: $accent-color;
+      box-shadow: inset 0 0 0 3px $accent-color;
+    }
+  }
+}
+
+#search-orders-date {
+    
+  h5 {
+  text-align: center;
+  font-weight: 700;
+  background-color: #d84f54;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  }
+}
+
+#search-orders {
+  h3 {
+
+    h5 {
+    font-size: 18px;
+    text-align: center;
+    }
+  }
+
+  li {
+    background: $active-background-color;
+    margin: 10px 10px 35px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    border: $border;
+
+    h6 {
+    font-size: 16px;
+    }
+  }
+}
+
+.list-menu-items {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  border: $border;
+
+  li {
+
+    button {
+      background-color: $accent-color;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      height: 23px;
+      margin: 2px 15px 2px 0;
+    }
+
+    h5 {
+      font-size: 16px;
+    }
+  } 
+}
+
+.list-order-history {
+  height: 300px;
+  border: $border;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  padding: 10px;
+
+  li {
+    list-style-type: none;
+
+    h6 {
+      font-size: 14px;
+    }
+  }
+}
+
+.order-charges {
+  height: 100px;
+  border: $border;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  padding: 10px;
+}
 .tabs {
   padding: 5px 20px 0 20px;
   // color: black;
@@ -248,5 +403,92 @@ header {
     color: $accent-color;
     height: 100%;
   }
+
+  // Room Tab
+
+#rooms {
+  display: flex;
+  flex-direction: row;
+}
+
+.room-stats{
+  background: $active-background-color;
+  border: $border;
+}
+
+.search-for-rooms {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-table {
+  clear: both;
+	border: $border;
+	height: 285px;
+	overflow: auto;
+	width: 900px;
+}
+
+table {
+  table-layout: fixed;
+}
+
+thead.fixed-header tr {
+  position: relative;
+}
+
+thead.fixed-header th {
+	background: $active-font-color;
+	border-left: 1px solid #EB8;
+	border-right: 1px solid #B74;
+	border-top: 1px solid #EB8;
+	font-weight: normal;
+	padding: 4px 3px;
+	text-align: left;
+}
+
+tbody {
+  display: block;
+  display: table-row-group;
+	height: 262px;
+	overflow: auto;
+	width: 100%;
+}
+
+thead.fixed-header {
+	display: table;
+	overflow: auto;
+	width: 100%;
+}
+
+td {
+  background: #FFF;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	padding: 2px 3px 3px 4px
+}
+
+// table {
+//   table-layout: fixed;
+//   display: inline-block;
+//   border-radius: 5px;
+//   border: $border;
+//   overflow: auto;
+
+//   tb {
+//     display: block;
+//     background-color: $accent-color;
+//   }
+
+//   tr {
+//     // width: 40px;
+//   }
+// }
+
+.table-heading {
+  display: block;
+}
 
 

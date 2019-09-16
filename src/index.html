@@ -40,15 +40,29 @@
         </section>
       </div>
       <div id="rooms">
-        <section>
+        <section class="room-stats">
           <p>The most popular booking date is <span id="most-popular-date"></span></p>
           <p>The greatest room availability is on <span id="least-popular-date"></span></p>
+        </section>
+        <section class="search-for-rooms"> 
           <p>Find Available Rooms</p>
           <input id="input-search-rooms" type="text" placeholder="yyyy/mm/dd">
           <button id="btn-search-rooms">Search</button>
           <button id="btn-clear-rooms">Clear</button>
-          <container>
-            <tb id="table-available-rooms"></tb>
+          <container class="container-table"> 
+            <table colspan="6" id="table-available-rooms">
+              <thead class="fixed-header">
+                <tr class="table-heading">
+                  <th>Number</th>
+                  <th>Room Type</th>
+                  <th>Bidet</th>
+                  <th>Bed Size</th>
+                  <th>Num of Beds</th>
+                  <th>Cost per Night</th>
+                </tr>
+              </thead>
+              <tbody class="tbody-available-rooms"></tbody>
+            </table>
           </container>
         </section>
       </div>
@@ -59,19 +73,27 @@
         </section>   
         <section>
           <p>Find Room Service Orders</p>
-          <input id="input-search-orders"type="text" placeholder="yyyy/mm/dd">
-          <button id="btn-search-orders" disabled>Search</button>
-          <button id="btn-clear-orders">Clear</button>
-          <p id="search-orders-date"></p>
-          <ul id="search-orders"></ul>
+          <container class="container-search-orders">
+            <input id="input-search-orders"type="text" placeholder="yyyy/mm/dd">
+            <button id="btn-search-orders" disabled>Search</button>
+            <button id="btn-clear-orders">Clear</button>
+          </container>
+          <container class="container-search-result">
+            <h3 id="search-orders-date"></h3>
+            <ul id="search-orders"></ul>
+          </container>
         </section>
         <section>
           <p>Place A Room Service Order</p>
           <ul class="list-menu-items"></ul>
         </section>
         <section>
-          <p>Customer Order History</p>
+          <p>Guest Order History</p>
           <ul class="list-order-history" id="list-order-history"></ul>
+          <p>Guest Room Service Charges</p>
+          <container class="order-charges" id="order-charges-day"></container>
+          <p>Guest Total Room Services</p>
+          <container class="order-charges" id="order-charges-total"></container>
         </section>
       </div>
       <div id="customer">
