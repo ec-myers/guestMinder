@@ -62,4 +62,10 @@ describe('Guest', () => {
     guest.orders.push(order);
     expect(guest.findGuestTotalForAllOrders()).to.equal(14.9);
   });
+
+  it('should add a new room service order', () => {
+    guest.createRoomServiceOrder('2019/07/29', 'Rustic Concrete Sandwich', 14.9)
+    expect(guest.orders.length).to.equal(1);
+    console.log(guest.orders)
+  })
 });
