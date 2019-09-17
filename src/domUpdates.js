@@ -23,7 +23,7 @@ export default {
     orders.forEach(order => {
       let food = order.foodItems;
       let cost = order.totalCost;
-      let item = $(`<li><h6> &#8226; ${food}, $${cost.toFixed(2)}</h6></li>`);
+      let item = $(`<li><h6>Item: ${food}<br>Cost: $${cost.toFixed(2)}</h6></li>`);
       $('.all-orders').append(item);
     });
   },
@@ -33,7 +33,7 @@ export default {
     orders.forEach(order => {
       let food = order.foodItems;
       let cost = order.totalCost;
-      let item = $(`<li><h6> &#8226; ${food}, $${cost.toFixed(2)}</h6></li>`);
+      let item = $(`<li><h6>${food}, $${cost.toFixed(2)}</h6></li>`);
       $('#search-orders').append(item);
     });
   },
@@ -53,7 +53,7 @@ export default {
     $('#list-order-history').html('');
     console.log(guestOrders)
     guestOrders.forEach(order => {
-    let ordersList = $(`<li><h6 class='right'> &#8226; ${order.date}, ${order.foodItems}, $${order.totalCost.toFixed(2)} </h6></li>`);
+    let ordersList = $(`<li><h6>${order.date}, ${order.foodItems}, $${order.totalCost.toFixed(2)} </h6></li>`);
 
     console.log(ordersList)
       $('#list-order-history').append(ordersList)
@@ -87,5 +87,13 @@ export default {
 
   enableCustomerButtons() {
     $('#btn-order-food').attr('disabled', false);
+  },
+
+  displayBookingsForGuest(guestBookings) {
+    console.log(guestBookings)
+    guestBookings.forEach(booking => {
+      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`)
+      $('.list-guest-bookings').append(bookingsList);
+    });
   }
 }

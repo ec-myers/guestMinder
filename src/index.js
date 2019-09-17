@@ -59,19 +59,26 @@ $('#btn-search-guest').on('click', () => {
   let foundSearchGuest = hotel.findGuestByName(inputSearchGuest);
 
   if (foundSearchGuest !== undefined) {
+    hotel.currentGuest = foundSearchGuest;
+    let bookings = hotel.currentGuest.bookings;
     let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
     let allTotal = hotel.currentGuest.findGuestTotalForAllOrders(hotel.todaysDate);
 
-    hotel.currentGuest = foundSearchGuest;
     domUpdates.displayCurrentGuest(foundSearchGuest.name);
     domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
     domUpdates.displayOrderTotalsForGuest(dayTotal, allTotal);
+    domUpdates.displayBookingsForGuest(bookings);
     domUpdates.enableCustomerButtons();
     console.log(hotel.currentGuest)
   } else {
     domUpdates.displaySearchError();
   }
 });
+
+// function displayCurrentGuest() {
+//   let guestBookings = hotel.currentGuest.bookings;
+//   domUpdates.displayBookingsForGuest(guestBookings);
+// }
 
 //order tab ------------>
 $('#input-search-orders').on('keypress', () => {

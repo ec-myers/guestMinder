@@ -117,8 +117,8 @@ header {
   border-top: 0;
   // border: $border;
   clear: both;
-  height: 75vh;
-  padding: 24px 30px;
+  height: 80vh;
+  padding: 30px;
   position: relative;
   // top: -1px;
 }
@@ -244,21 +244,26 @@ header {
 }
 
 .all-orders {
-margin: 10px;
-padding: 8px;
-background: $active-background-color;
-margin: 10px 10px 35px 10px;
-display: flex;
-flex-direction: column;
-padding: 10px;
-border-radius: 5px;
-margin: 10px 0 10px 0;
-border: $border;
+  background: $active-background-color;
+  border-radius: 5px;
+  border: $border;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  list-style-type: none;
+  margin: 10px 0 10px 0;
+  margin: 10px 10px 35px 10px;
+  margin: 10px;
+  padding: 10px;
+  padding: 8px;
 
   li {
 
     h6 {
+      border: 2px solid $active-font-color;
       font-size: 16px;
+      margin-bottom: 8px;
+      padding: 10px;
     }
   } 
 }
@@ -278,8 +283,8 @@ border: $border;
   }
 
   input {
-    border: none;
     border-radius: 4px;
+    border: none;
     font-size: 16px;
     height: 30px;
     margin: 10px;
@@ -288,16 +293,16 @@ border: $border;
 
   button {
     background-color: $accent-color;
-    border: none;
     border-radius: 4px;
+    border: none;
     font-size: 16px;
     height: 35px;
     margin: 10px;
 
     &:hover {
       background: hsla(0,0,43, 0.2);
-      color: $accent-color;
       box-shadow: inset 0 0 0 3px $accent-color;
+      color: $accent-color;
     }
   }
 }
@@ -305,16 +310,17 @@ border: $border;
 #search-orders-date {
     
   h5 {
-  text-align: center;
-  font-weight: 700;
   background-color: #d84f54;
   border-radius: 5px;
+  font-weight: 700;
   height: 30px;
   padding: 5px;
+  text-align: center;
   }
 }
 
 #search-orders {
+
   h3 {
 
     h5 {
@@ -325,80 +331,76 @@ border: $border;
 
   li {
     background: $active-background-color;
-    margin: 10px 10px 35px 10px;
+    border-radius: 5px;
+    border: 2px solid $active-font-color;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    border-radius: 5px;
     margin: 10px 0 10px 0;
-    border: $border;
+    margin: 25px 0 15px 0;
+    padding: 10px;
 
     h6 {
     font-size: 16px;
+    padding: 10px;
     }
   }
 }
 
 .list-menu-items {
-  margin: 10px;
-  padding: 8px;
   border-radius: 5px;
-  margin: 10px 0 10px 0;
-  border: $border;
-
-  li {
-
-    button {
-      background-color: $accent-color;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      height: 23px;
-      margin: 2px 15px 2px 0;
-    }
-
-    h5 {
-      font-size: 16px;
-    }
-  } 
+  font-size: 16px;
+  height: 35px;
+  margin: 15px 10px;
 }
 
+#btn-order-food {
+  background-color: $accent-color;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+  height: 35px;
+  margin: 10px;
+
+  &:hover {
+    background: hsla(0,0,43, 0.2);
+    box-shadow: inset 0 0 0 3px $accent-color;
+    color: $accent-color;
+  }
+} 
+
 .list-order-history {
-  height: 300px;
-  border: $border;
   border-radius: 5px;
+  border: $border;
+  height: 300px;
+  list-style-type: none;
   margin: 10px 0 10px 0;
   padding: 10px;
 
   li {
-    list-style-type: none;
 
     h6 {
       font-size: 16px;
+      padding: 10px;
     }
   }
 }
 
 .order-charges {
-  height: 100px;
-  border: $border;
   border-radius: 5px;
+  border: $border;
+  height: 100px;
   margin: 10px 0 10px 0;
   padding: 30px;
 
   h6 {
-    text-align: center;
     font-size: 32px;
+    text-align: center;
+    padding: 10px;
   }
-
-    // span {
-
-    // }
 }
 
 .tabs {
   padding: 5px 20px 0 20px;
-  // color: black;
 } 
 
   .tab-active li {
@@ -407,10 +409,9 @@ border: $border;
 
   .tab-active a {
     background-color: $active-background-color;
-    // border-bottom: none;
     border-radius: 5px 5px 0 0;
-    cursor: default;
     color: $accent-color;
+    cursor: pointer;
     height: 100%;
   }
 
@@ -419,47 +420,73 @@ border: $border;
 #rooms {
   display:flex;
   flex-direction: row;
-  justify-content: space-between;
   height: 95%;
+  justify-content: space-between;
 
   section {
-    display: flex;
-    flex-direction: column;
+    align-content: space-between;
     background: $active-background-color;
     border-radius: 5px;
     border: $border;
-    width: 23%;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
-    align-content: space-evenly;
+    width: 23%;
   }
-     p, .booking-stats{
-      text-align: center;
-      font-weight: 700;
+
+     p, .booking-stats {
       background-color: $active-font-color;
       border-radius: 5px;
+      font-weight: 700;
       height: 30px;
       padding: 5px;
+      text-align: center;
     }
+
+  ul {
+    background: $active-background-color;
+    border-radius: 5px;
+    border: $border;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    list-style-type: none;
+    margin: 10px 0 10px 0;
+    margin: 10px 10px 0 10px;
+    overflow:hidden;
+    overflow-y: scroll;
+    padding: 10px;
+
+    li {
+
+      h6 {
+        border: 2px solid $active-font-color;
+        font-size: 16px;
+        margin-bottom: 8px;
+        padding: 10px;
+      }
+    }
+  } 
 }
 
 #room-stats{
   background: $active-background-color;
   border: $border;
   p {
-    margin: 30px 0 30px 0;
-    width: 100%;
     background-color: initial;
     display: flex;
     flex-direction: column;
+    margin: 30px 0 30px 0;
+    width: 100%;
   }
     span {
-      text-align: center;
-      font-weight: 700;
       background-color: $active-font-color;
       border-radius: 5px;
+      font-weight: 700;
       height: 30px;
-      padding: 5px;
       margin-top: 10px;
+      padding: 5px;
+      text-align: center;
     }
 }
 
