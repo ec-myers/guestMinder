@@ -1,13 +1,12 @@
 import chai from 'chai';
 const expect = chai.expect;
-// import spies from 'chai-spies';
-import Hotel from '../src/Hotel.js'
+import spies from 'chai-spies';
+import Hotel from '../src/Hotel';
+import domUpdates from '../src/domUpdates';
 
-// chai.use(spies);
-// chai.spy.on(domUpdates,
-//   ['',
-//     '',
-//     ''], () => { });
+chai.use(spies);
+chai.spy.on(domUpdates,
+  ['displayMenu'], () => { });
 
 describe('Hotel', () => {
   let guestsData,
@@ -41,7 +40,7 @@ describe('Hotel', () => {
     }];
     roomsData = [{
       number: 1,
-      type: 'residential suite',
+      roomType: 'residential suite',
       bidet: false,
       bedSize: 'twin',
       numBeds: 1,
@@ -49,20 +48,20 @@ describe('Hotel', () => {
     },
     {
       number: 5,
-      type: 'junior suite',
+      roomType: 'junior suite',
       bidet: true,
       bedSize: 'king',
       numBeds: 1,
       costPerNight: 216.05
     },
-      {
-        number: 2,
-        type: 'junior suite',
-        bidet: true,
-        bedSize: 'king',
-        numBeds: 1,
-        costPerNight: 216.05
-      }];
+    {
+      number: 2,
+      roomType: 'junior suite',
+      bidet: true,
+      bedSize: 'king',
+      numBeds: 1,
+      costPerNight: 216.05
+    }];
     hotel = new Hotel(guestsData, ordersData, bookingsData, roomsData);
   });
 
@@ -102,7 +101,7 @@ describe('Hotel', () => {
   });
 
   it('should find all orders for a given day', () => {
-    expect(hotel.findAllOrdersByDate('2019/07/29').length).to.eql(1)
+    expect(hotel.findAllOrdersByDate('2019/07/29').length).to.eql(1);
   });
 
   it('should find all bookings', () => {
@@ -124,7 +123,7 @@ describe('Hotel', () => {
   it('should find rooms available by date', () => {
     expect(hotel.findRoomsAvailableByDate('2019/07/29')).to.eql([{
       number: 2,
-      type: 'junior suite',
+      roomType: 'junior suite',
       bidet: true,
       bedSize: 'king',
       numBeds: 1,
@@ -146,6 +145,7 @@ describe('Hotel', () => {
 
   it('should create a menu', () => {
     hotel.createMenu();
+    expect(domUpdates.displayMenu).to.be.called(1);
     expect(hotel.menu).to.eql([{
       food: 'Rustic Concrete Sandwich',
       cost: 14.9}]);
@@ -153,6 +153,6 @@ describe('Hotel', () => {
 
   it('should filter rooms by type', () => {
     let type = 'residential suite'
-    expect(hotel.filterRoomsByType(roomsData, type).length).to.equal(1)
+    expect(hotel.filterRoomsByType(roomsData, type).length).to.equal(1);
   });
 });
