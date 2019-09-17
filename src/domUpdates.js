@@ -85,4 +85,7 @@ export default {
     });
   },
 
+  enableCustomerButtons() {
+    $('#btn-order-food').attr('disabled', false);
+  }
 }

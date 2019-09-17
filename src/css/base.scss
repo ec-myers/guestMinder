@@ -202,7 +202,7 @@ header {
 
   }
   
-  //Order Tab
+//Order Tab
 
 .orders-tab {
   display:flex;
@@ -417,13 +417,50 @@ border: $border;
   // Room Tab
 
 #rooms {
-  display: flex;
+  display:flex;
   flex-direction: row;
+  justify-content: space-between;
+  height: 95%;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    background: $active-background-color;
+    border-radius: 5px;
+    border: $border;
+    width: 23%;
+    padding: 10px;
+    align-content: space-evenly;
+  }
+     p, .booking-stats{
+      text-align: center;
+      font-weight: 700;
+      background-color: $active-font-color;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+    }
 }
 
-.room-stats{
+#room-stats{
   background: $active-background-color;
   border: $border;
+  p {
+    margin: 30px 0 30px 0;
+    width: 100%;
+    background-color: initial;
+    display: flex;
+    flex-direction: column;
+  }
+    span {
+      text-align: center;
+      font-weight: 700;
+      background-color: $active-font-color;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+      margin-top: 10px;
+    }
 }
 
 .search-for-rooms {
@@ -431,74 +468,5 @@ border: $border;
   flex-direction: column;
 }
 
-.container-table {
-  clear: both;
-	border: $border;
-	height: 285px;
-	overflow: auto;
-	width: 900px;
-}
-
-table {
-  table-layout: fixed;
-}
-
-thead.fixed-header tr {
-  position: relative;
-}
-
-thead.fixed-header th {
-	background: $active-font-color;
-	border-left: 1px solid #EB8;
-	border-right: 1px solid #B74;
-	border-top: 1px solid #EB8;
-	font-weight: normal;
-	padding: 4px 3px;
-	text-align: left;
-}
-
-tbody {
-  display: block;
-  display: table-row-group;
-	height: 262px;
-	overflow: auto;
-	width: 100%;
-}
-
-thead.fixed-header {
-	display: table;
-	overflow: auto;
-	width: 100%;
-}
-
-td {
-  background: #FFF;
-	border-bottom: none;
-	border-left: none;
-	border-right: 1px solid #CCC;
-	border-top: 1px solid #DDD;
-	padding: 2px 3px 3px 4px
-}
-
-// table {
-//   table-layout: fixed;
-//   display: inline-block;
-//   border-radius: 5px;
-//   border: $border;
-//   overflow: auto;
-
-//   tb {
-//     display: block;
-//     background-color: $accent-color;
-//   }
-
-//   tr {
-//     // width: 40px;
-//   }
-// }
-
-.table-heading {
-  display: block;
-}
 
 

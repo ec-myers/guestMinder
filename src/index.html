@@ -40,17 +40,24 @@
         </section>
       </div>
       <div id="rooms">
-        <section class="room-stats">
+        <section class="room-stats" id="room-stats">
+          <p class="booking-stats">Booking Stats</p>
           <p>The most popular booking date is <span id="most-popular-date"></span></p>
           <p>The greatest room availability is on <span id="least-popular-date"></span></p>
         </section>
+        <section>
+          <p>Guest Bookings</p>
+        </section>
         <section class="search-for-rooms"> 
-          <p>Find Available Rooms</p>
+          <p>Search Available Rooms</p>
           <input id="input-search-rooms" type="text" placeholder="yyyy/mm/dd">
           <button id="btn-search-rooms">Search</button>
           <button id="btn-clear-rooms">Clear</button>
-          <container class="container-table"> 
-            <table colspan="6" id="table-available-rooms">
+          <select id="list-available-rooms">
+            <option>Select an available room</option>
+          </select>
+          <!-- <container class="container-table">  -->
+            <!-- <table colspan="6" id="table-available-rooms">
               <thead class="fixed-header">
                 <tr class="table-heading">
                   <th>Number</th>
@@ -62,8 +69,8 @@
                 </tr>
               </thead>
               <tbody class="tbody-available-rooms"></tbody>
-            </table>
-          </container>
+            </table> -->
+          <!-- </container> -->
         </section>
       </div>
       <div class="orders-tab" id="orders">
@@ -88,16 +95,16 @@
           <select class="list-menu-items">
             <option>Choose an item from the menu</option>
           </select>
-          <button id='btn-order-food'>Place Order</button>
+          <button id='btn-order-food' disabled>Place Order</button>
         </section>
         <section>
           <p>Guest Order History</p>
           <ul class="list-order-history" id="list-order-history"></ul>
-          <p>Guest Charges Today</p>
+          <p>Guest Room Service Today</p>
           <container class="order-charges">
             <h6>$ <span id="order-charges-day"></span></h6>
           </container>
-          <p>Guest Charges Total</p>
+          <p>Guest Room Service Total</p>
           <container class="order-charges">
             <h6>$ <span id="order-charges-total"></span></h6>
           </container>

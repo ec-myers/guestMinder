@@ -51,6 +51,7 @@ $('#btn-add-guest').on('click', () => {
 
   hotel.currentGuest = newGuest;
   domUpdates.displayCurrentGuest(newGuestName);
+  domUpdates.enableCustomerButtons();
 });
 
 $('#btn-search-guest').on('click', () => {
@@ -58,12 +59,14 @@ $('#btn-search-guest').on('click', () => {
   let foundSearchGuest = hotel.findGuestByName(inputSearchGuest);
 
   if (foundSearchGuest !== undefined) {
-    domUpdates.displayCurrentGuest(foundSearchGuest.name);
-    hotel.currentGuest = foundSearchGuest;
-    domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
     let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
     let allTotal = hotel.currentGuest.findGuestTotalForAllOrders(hotel.todaysDate);
+
+    hotel.currentGuest = foundSearchGuest;
+    domUpdates.displayCurrentGuest(foundSearchGuest.name);
+    domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
     domUpdates.displayOrderTotalsForGuest(dayTotal, allTotal);
+    domUpdates.enableCustomerButtons();
     console.log(hotel.currentGuest)
   } else {
     domUpdates.displaySearchError();
@@ -105,7 +108,7 @@ $('#btn-search-rooms').on('click', () => {
   let roomsAvailable = hotel.findRoomsAvailableByDate(inputSearchDate);
 
   domUpdates.displayAvailableRooms(roomsAvailable);
-})
+});
 // setTimeout(() => {
 // var ctx = $('#revenue-chart');
 // var todaysRevenue = new Chart(ctx, {
