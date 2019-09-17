@@ -41,7 +41,7 @@ describe('Hotel', () => {
     }];
     roomsData = [{
       number: 1,
-      roomType: 'residential suite',
+      type: 'residential suite',
       bidet: false,
       bedSize: 'twin',
       numBeds: 1,
@@ -49,7 +49,7 @@ describe('Hotel', () => {
     },
     {
       number: 5,
-      roomType: 'junior suite',
+      type: 'junior suite',
       bidet: true,
       bedSize: 'king',
       numBeds: 1,
@@ -57,7 +57,7 @@ describe('Hotel', () => {
     },
       {
         number: 2,
-        roomType: 'junior suite',
+        type: 'junior suite',
         bidet: true,
         bedSize: 'king',
         numBeds: 1,
@@ -149,5 +149,10 @@ describe('Hotel', () => {
     expect(hotel.menu).to.eql([{
       food: 'Rustic Concrete Sandwich',
       cost: 14.9}]);
+  });
+
+  it('should filter rooms by type', () => {
+    let type = 'residential suite'
+    expect(hotel.filterRoomsByType(roomsData, type).length).to.equal(1)
   });
 });

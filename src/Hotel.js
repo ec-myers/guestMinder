@@ -159,6 +159,10 @@ class Hotel {
     });
   }
 
+  filterRoomsByType(roomsByDate, type) {
+    return roomsByDate.filter(room => room.type === type);
+  }
+
   calculateTotalRevenueByDate(date) {
     let orderRevenue = this.findAllOrdersByDate(date).reduce((acc, order) => {
       return acc += order.totalCost;

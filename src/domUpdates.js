@@ -90,10 +90,18 @@ export default {
   },
 
   displayBookingsForGuest(guestBookings) {
+    $('.list-guest-bookings').html('');
     console.log(guestBookings)
     guestBookings.forEach(booking => {
       let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`)
       $('.list-guest-bookings').append(bookingsList);
+    });
+  },
+
+  displayAvailableRoomsByType(roomsByType) {
+    roomsByType.forEach(room => {
+      let roomsList = $(`<li><h6>Type: ${room.type}<br> Number of Beds: ${room.numBeds} Bed Size: ${room.bedSize} Bidet: ${room.bidet}</h6></li>`)
+      $('.list-guest-bookings').append(roomsList);
     });
   }
 }

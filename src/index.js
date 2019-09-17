@@ -109,12 +109,27 @@ $('#btn-order-food').on('click', (e) => {
 });
 
 // rooms tab --------->
-
 $('#btn-search-rooms').on('click', () => {
   let inputSearchDate = $('#input-search-rooms').val();
   let roomsAvailable = hotel.findRoomsAvailableByDate(inputSearchDate);
-
+  
   domUpdates.displayAvailableRooms(roomsAvailable);
+});
+
+$('#input-available-rooms-date').on('keypress', () => {
+  $('#room-types').attr('disabled', false);
+});
+
+$('#room-types').on('change', () => {
+  let type = $('#room-types').find(':selected').val();
+  let date = $('#input-available-rooms-date').val();
+  let roomsByDate = hotel.findRoomsAvailableByDate(date);
+  console.log(typeof (date), typeof (type))
+  let roomsByType = hotel.filterRoomsByType(roomsByDate, type);
+  console.log('date', roomsByDate)
+  console.log('type', roomsByType)
+
+  domUpdates.displayAvailableRoomsByType(roomsByType);
 });
 // setTimeout(() => {
 // var ctx = $('#revenue-chart');
