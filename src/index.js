@@ -87,16 +87,16 @@ $('#btn-search-orders').on('click', () => {
   $('#btn-search-orders').attr('disabled', true);
 });
 
-$('.list-menu-items').on('click', '.btn-order-food', (e) => {
+$('#btn-order-food').on('click', (e) => {
   e.preventDefault();
-  let food = $(e.target).closest('li').data('food');
-  // let food = $('.list-menu-items').find('#btn-order-food').data('food');
-  // let food = $('.btn-order-food').data('food');
-  // let cost = $('.btn-order-food').data('cost');
-  console.log(this.dataset.food, this.dataset.cost)
-  console.log(hotel.currentGuest)
-  hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, this.dataset.food, this.dataset.cost);
-})
+  let food = $('.list-menu-items').find(':selected').data('food');
+  let cost = $('.list-menu-items').find(':selected').data('cost');
+  let newTotal = hotel.currentGuest.findGuestTotalForAllOrders();
+  let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
+
+  hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, food, cost);
+  domUpdates.displayOrderTotalsForGuest(dayTotal, newTotal);
+});
 
 // rooms tab --------->
 

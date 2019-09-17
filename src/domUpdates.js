@@ -44,7 +44,8 @@ export default {
   },
 
   displayMenu(food, cost) {
-    let menuItems = $(`<li><button class='btn-order-food' id='btn-order-food' data-food='${food}' data-cost='${cost}'>Order</button><h5>${food} $${cost}</h5></li><br>`);
+    let menuItems = $(`<option data-food='${food}' data-cost='${cost}'>${food} $${cost}</option>`);
+
     $('.list-menu-items').append(menuItems);
   },
 
@@ -82,5 +83,6 @@ export default {
           </tr>`
       );
     });
-  }
+  },
+
 }
