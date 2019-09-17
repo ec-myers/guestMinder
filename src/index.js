@@ -128,8 +128,19 @@ $('#room-types').on('change', () => {
   let roomsByType = hotel.filterRoomsByType(roomsByDate, type);
   console.log('date', roomsByDate)
   console.log('type', roomsByType)
+$('#available-rooms').attr('disabled', false);
+  domUpdates.displayAvailableRoomsByType(roomsByType, date);
+});
 
-  domUpdates.displayAvailableRoomsByType(roomsByType);
+$('#btn-book-room').on('click', () => {
+  console.log(hotel.currentGuest.bookings)
+
+  let date = $('#available-rooms').find(':selected').data('date');
+  let roomNumber = $('#available-rooms').find(':selected').data('number')
+
+  hotel.currentGuest.createBooking(date, roomNumber);
+  console.log(hotel.currentGuest.bookings)
+  domUpdates.displayNewBookingForGuest(date, roomNumber)
 });
 // setTimeout(() => {
 // var ctx = $('#revenue-chart');

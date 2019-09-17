@@ -70,20 +70,20 @@ export default {
     $('#least-popular-date').text(least);
   },
 
-  displayAvailableRooms(roomsData) {
-    roomsData.forEach(room => {
-      $('.tbody-available-rooms').append(
-        `<tr class="pointer" id=rooms-${room.number}>
-            <td id="num">${room.number}</td>
-            <td id="type">${room.type}</td>
-            <td id="bidet">${room.bidet}</td>
-            <td id="bedSize">${room.bedSize}</td>
-            <td id="numBeds">${room.numBeds}</td>
-            <td id="costPerNight">$${room.costPerNight}</td>
-          </tr>`
-      );
-    });
-  },
+  // displayAvailableRooms(roomsData) {
+  //   roomsData.forEach(room => {
+  //     $('.tbody-available-rooms').append(
+  //       `<tr class="pointer" id=rooms-${room.number}>
+  //           <td id="num">${room.number}</td>
+  //           <td id="type">${room.type}</td>
+  //           <td id="bidet">${room.bidet}</td>
+  //           <td id="bedSize">${room.bedSize}</td>
+  //           <td id="numBeds">${room.numBeds}</td>
+  //           <td id="costPerNight">$${room.costPerNight}</td>
+  //         </tr>`
+  //     );
+  //   });
+  // },
 
   enableCustomerButtons() {
     $('#btn-order-food').attr('disabled', false);
@@ -98,10 +98,15 @@ export default {
     });
   },
 
-  displayAvailableRoomsByType(roomsByType) {
+  displayNewBookingForGuest(date, roomNumber) {
+    let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`)
+    $('.list-guest-bookings').append(newBooking);
+  },
+
+  displayAvailableRoomsByType(roomsByType, date) {
     roomsByType.forEach(room => {
-      let roomsList = $(`<li><h6>Type: ${room.type}<br> Number of Beds: ${room.numBeds} Bed Size: ${room.bedSize} Bidet: ${room.bidet}</h6></li>`)
-      $('.list-guest-bookings').append(roomsList);
+      let roomsList = $(`<option data-date='${date}' data-number='${room.number}' data-type='${room.type}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.type} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
+      $('#available-rooms').append(roomsList);
     });
   }
 }
