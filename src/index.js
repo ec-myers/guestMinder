@@ -35,14 +35,14 @@ $('.tabs-nav a').on('click', function (event) {
   $($(this).attr('href')).show();
 }); 
 
-
-$('#main').on('click', () => {
-  console.log(hotel.createMenu());
-
-})
-
-
 //guest tab ---------->
+$('#input-add-guest').on('keyup', () => {
+  domUpdates.enableAddGuestButton();
+});
+
+$('#input-search-guest').on('keyup', () => {
+  domUpdates.enableSearchGuestButton();
+});
 
 $('#btn-add-guest').on('click', () => {
   let newGuestName = $('#input-add-guest').val();
@@ -52,6 +52,7 @@ $('#btn-add-guest').on('click', () => {
   hotel.currentGuest = newGuest;
   domUpdates.displayCurrentGuest(newGuestName);
   domUpdates.enableCustomerButtons();
+  domUpdates.displayAddedGuestMessage();
 });
 
 $('#btn-search-guest').on('click', () => {
@@ -69,18 +70,13 @@ $('#btn-search-guest').on('click', () => {
     domUpdates.displayOrderTotalsForGuest(dayTotal, allTotal);
     domUpdates.displayBookingsForGuest(bookings);
     domUpdates.enableCustomerButtons();
-    console.log(hotel.currentGuest)
   } else {
     domUpdates.displaySearchError();
   }
 });
 
-// function displayCurrentGuest() {
-//   let guestBookings = hotel.currentGuest.bookings;
-//   domUpdates.displayBookingsForGuest(guestBookings);
-// }
-
 //order tab ------------>
+
 $('#input-search-orders').on('keypress', () => {
   $('#btn-search-orders').attr('disabled', false);
 });
@@ -106,9 +102,12 @@ $('#btn-order-food').on('click', (e) => {
 
   hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, food, cost);
   domUpdates.displayOrderTotalsForGuest(dayTotal, newTotal);
+  domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
+
 });
 
 // rooms tab --------->
+
 $('#btn-search-rooms').on('click', () => {
   let inputSearchDate = $('#input-search-rooms').val();
   let roomsAvailable = hotel.findRoomsAvailableByDate(inputSearchDate);
@@ -121,6 +120,7 @@ $('#input-available-rooms-date').on('keypress', () => {
 });
 
 $('#room-types').on('change', () => {
+  $('#available-rooms').attr('disabled', false);
   let type = $('#room-types').find(':selected').val();
   let date = $('#input-available-rooms-date').val();
   let roomsByDate = hotel.findRoomsAvailableByDate(date);
@@ -128,48 +128,92 @@ $('#room-types').on('change', () => {
   let roomsByType = hotel.filterRoomsByType(roomsByDate, type);
   console.log('date', roomsByDate)
   console.log('type', roomsByType)
-$('#available-rooms').attr('disabled', false);
   domUpdates.displayAvailableRoomsByType(roomsByType, date);
 });
 
-$('#btn-book-room').on('click', () => {
-  console.log(hotel.currentGuest.bookings)
+$('#available-rooms').on('change', () => {
+  $('#btn-book-room').attr('disabled', false);
+});
 
+$('#btn-book-room').on('click', () => {
+  $('#btn-book-room').attr('disabled', true);
   let date = $('#available-rooms').find(':selected').data('date');
   let roomNumber = $('#available-rooms').find(':selected').data('number')
-
+  
   hotel.currentGuest.createBooking(date, roomNumber);
-  console.log(hotel.currentGuest.bookings)
   domUpdates.displayNewBookingForGuest(date, roomNumber)
 });
-// setTimeout(() => {
-// var ctx = $('#revenue-chart');
-// var todaysRevenue = new Chart(ctx, {
-//   type: 'bar',
-//   data: {
-//     labels: [hotel.todaysDate],
-//     datasets: [{
-//       label: 'dollars',
-//       data: hotel.calculateTotalRevenueByDate(hotel.todaysDate),
-//       backgroundColor: [
-//         'rgb(221, 160, 221, 1)',
-//       ],
-//       borderColor: [
-//         'rgba(221, 160, 221, 1)',
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     legend: {
-//     },
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });  
-// }, 1000)
+
+
+setTimeout(() => {
+  Chart.defaults.global.defaultFontColor = 'black';
+  const revenueChart = new Chart($('#revenue-chart'), {
+    type: 'bar',
+    data: {
+      labels: ['dollars'],
+      datasets: [{
+        label: 'Today\'s Revenue',
+        data: [hotel.calculateTotalRevenueByDate(hotel.todaysDate)],
+        backgroundColor: [
+          'rgba(255, 192, 141, 1)'
+        ],
+        borderColor: [
+          'rgba(231, 144, 146, 1)'
+        ],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Roboto'",
+      responsive: false,
+      maintainAspectRatio: true,
+      aspectRatio: 2,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+  const occupancyChart = new Chart($('#occupancy-chart'), {
+    type: 'pie',
+    data: {
+      labels: ['Available Rooms', 'Booked Rooms'],
+      datasets: [{
+        label: 'Today\'s Occupancy',
+        data: [hotel.findRoomsAvailableByDate(hotel.todaysDate).length, hotel.findRoomsBookedByDate(hotel.todaysDate).length],
+        backgroundColor: [
+          'rgba(231, 144, 146, .9)',
+          'rgba(255, 192, 141, 1)',
+        ],
+        borderColor: [
+          'rgba(231, 144, 146, .9)',
+          'rgba(255, 192, 141, 1)',
+        ],
+        borderWidth: 3
+      }]
+    },
+    options: {
+      defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Roboto'",
+      responsive: false,
+      maintainAspectRatio: true,
+      aspectRatio: 2,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}, 150)

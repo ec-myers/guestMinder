@@ -30,13 +30,29 @@
       <div id="main">
         <section class="todays-stats">
           <h3>Today's Stats</h3>
-          <p><span id="room-availability-today"></span> rooms are available</p>
-          <p>Occupancy: <span id="occupancy-today"></span>%</p>
-          <p>Total Revenue: $<span id="total-revenue-today"></span></p>
+          <container>
+            <span id="room-availability-today"></span>
+            <p> rooms are available</p>
+          </container>
+          <container>
+            <span id="occupancy-today"></span>
+            <p>of rooms are booked</p>
+          </container>
+          <container>
+           <span id="total-revenue-today"></span>
+            <p>total revenue</p>
+          </container>
+          <container>
+            <p>It's all about good old fashioned hospitality!</p>
+          </container>
         </section>
-        <section class="main-charts">
-        <canvas id="revenue-chart" width="200" height="100"></canvas>
-        <canvas id="occupancy-chart" width="300" height="150"></canvas>
+        <section class="revenue-chart">
+          <p>Today's Revenue</p>
+        <canvas id="revenue-chart" width="400" height="200"></canvas>
+        </section>
+        <section class="occupancy-chart">
+          <p>Today's Occupancy</p>
+        <canvas id="occupancy-chart" width="400" height="200"></canvas>
         </section>
       </div>
       <div id="rooms">
@@ -62,22 +78,7 @@
           <select id="available-rooms" disabled>
             <option>Choose an available room</option>
           </select>
-          <button id="btn-book-room">Book Room</button>
-          <!-- <container class="container-table">  -->
-            <!-- <table colspan="6" id="table-available-rooms">
-              <thead class="fixed-header">
-                <tr class="table-heading">
-                  <th>Number</th>
-                  <th>Room Type</th>
-                  <th>Bidet</th>
-                  <th>Bed Size</th>
-                  <th>Num of Beds</th>
-                  <th>Cost per Night</th>
-                </tr>
-              </thead>
-              <tbody class="tbody-available-rooms"></tbody>
-            </table> -->
-          <!-- </container> -->
+          <button id="btn-book-room" disabled>Book Room</button>
         </section>
       </div>
       <div class="orders-tab" id="orders">
@@ -109,11 +110,11 @@
           <ul class="list-order-history" id="list-order-history"></ul>
           <p>Guest Room Service Today</p>
           <container class="order-charges">
-            <h6>$ <span id="order-charges-day"></span></h6>
+            <h6><span id="order-charges-day"></span></h6>
           </container>
           <p>Guest Room Service Total</p>
           <container class="order-charges">
-            <h6>$ <span id="order-charges-total"></span></h6>
+            <h6><span id="order-charges-total"></span></h6>
           </container>
         </section>
       </div>
@@ -122,14 +123,15 @@
           <p>Add a New Guest</p>
           <label>Guest Name</label>
           <input id="input-add-guest"type="text" placeholder=" first and last name">
-          <button id="btn-add-guest">Submit</button>
+           <p class="message" id="added-message-guest"></p>
+          <button id="btn-add-guest" disabled>Add Guest</button>
         </section>
         <section class="search-guest form">
           <p>Search for a Guest</p>
           <label>Guest Name</label>
           <input id="input-search-guest" type="search" placeholder=" first and last name">
-          <p class="error-search-guest" id="error-search-guest"></p>
-          <button id="btn-search-guest">Search</button>
+          <p class="message" id="error-search-guest"></p>
+          <button id="btn-search-guest" disabled>Search</button>
         </section>
       </div>
     </div>
