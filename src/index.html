@@ -29,7 +29,7 @@
     <div class="tabs-content">
       <div id="main">
         <section class="todays-stats">
-          <h3>Today's Stats</h3>
+          <h3>Today's Statistics</h3>
           <container>
             <span id="room-availability-today"></span>
             <p> rooms are available</p>
@@ -57,9 +57,15 @@
       </div>
       <div id="rooms">
         <section class="room-stats" id="room-stats">
-          <p class="booking-stats">Booking Stats</p>
-          <p>The most popular booking date is <span id="most-popular-date"></span></p>
-          <p>The greatest room availability is on <span id="least-popular-date"></span></p>
+          <p class="booking-stats">Booking Statistics for Today</p>
+          <container>
+            <h4>The most popular booking date is</h4>
+            <span id="most-popular-date"></span>
+          </container>
+          <container>
+            <h4>The greatest room availability is on</h4>
+            <span id="least-popular-date"></span>
+          </container>
         </section>
         <section>
           <p>Guest Bookings</p>
@@ -133,6 +139,23 @@
           <p class="message" id="error-search-guest"></p>
           <button id="btn-search-guest" disabled>Search</button>
         </section>
+        <container class="guest-bill">
+          <container class="guest-bill-header">
+            <h4>Total Bill</h4>
+            <button id="btn-calculate-total">Calculate Total</button>
+          </container>
+          <container class="guest-bill-info">
+            <container class="container-guest-bill">
+              <h4>Guest:</h4>
+              <span id="guest-name-bill"></span>
+            </container>
+            <container class="container-guest-bill">
+              <h4>Amount Due:</h4>
+              <span id="guest-amount-bill"></span>
+            </container>
+            </container>
+          </container>
+        </container>
       </div>
     </div>
   </div>
