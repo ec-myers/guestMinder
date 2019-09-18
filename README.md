@@ -3,7 +3,7 @@
 ## Summary
 Guest Minder is a hotel management application developed to assist hotel staff in collecting and managing guest information. Through this interface a user has access to important statistics and information for the given day, as well as the ability to view guest specific information, such as room service orders and room bookings. Features to book a room and/or order room service directly from the application are also available to the user.
 
-The design and creation of this application required the implementation of a robust testing suite, emphasizing test driven development and promoting the desing of modular, reusable code. It also required a solid understanding of object oriented design and implementation of ES6 classes. The data for this application is retrieved by performing fetch requests against four unique endpoints.
+The design and creation of this application required the implementation of a robust testing suite, emphasizing test driven development and promoting the design of modular, reusable code. It also required a solid understanding of object oriented design and implementation of ES6 classes. The data for this application is retrieved by performing fetch requests against four unique endpoints.
 
 ## Languages/Technologies Used
 
@@ -15,8 +15,10 @@ The design and creation of this application required the implementation of a rob
 - Mocha and Chai testing suite
 
 ----
-![Guest Minder](
-)
+![guestMinder_mainTab](https://user-images.githubusercontent.com/47042400/65112184-0dbb1200-d99c-11e9-9187-f126d0fa848d.png)
+![guestMinder_roomsTab](https://user-images.githubusercontent.com/47042400/65112195-17447a00-d99c-11e9-9040-d42fa10c7bae.png)
+![guestMinder_ordersTab](https://user-images.githubusercontent.com/47042400/65112182-0dbb1200-d99c-11e9-9a54-c34e3a297dd6.png)
+![guestMinder_guestTab](https://user-images.githubusercontent.com/47042400/65112183-0dbb1200-d99c-11e9-8fb8-7b6b01201f99.png)
 
 ---
 
