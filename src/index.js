@@ -3,9 +3,8 @@ import './css/base.scss';
 import './images/suitcase.svg';
 import './images/background-img.jpg';
 import Hotel from './Hotel.js';
-import domUpdates from './domUpdates.js';
+import domUpdates from './domUpdates';
 import Chart from 'chart.js';
-import Guest from './Guest';
 
 let hotel;
 
@@ -21,12 +20,11 @@ Promise.all([
     .then(data => console.log(data))
     .then(data => hotel.start())
 
-//hide and show tabs
+
 $('.tabs-content div').hide();
 $('.tabs-content div:first').show();
 $('.tabs-nav li:first').addClass('tab-active');
   
-// Change tab class and display content
 $('.tabs-nav a').on('click', function (event) {
   event.preventDefault();
   $('.tabs-nav li').removeClass('tab-active');
@@ -75,8 +73,6 @@ $('#btn-search-guest').on('click', () => {
   }
 });
 
-//order tab ------------>
-
 $('#input-search-orders').on('keypress', () => {
   $('#btn-search-orders').attr('disabled', false);
 });
@@ -97,19 +93,12 @@ $('#btn-order-food').on('click', (e) => {
   e.preventDefault();
   let food = $('.list-menu-items').find(':selected').data('food');
   let cost = $('.list-menu-items').find(':selected').data('cost');
-  console.log(hotel.todaysDate)
   hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, food, cost);
   let newTotal = hotel.currentGuest.findGuestTotalForAllOrders().toFixed(2);
   let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate).toFixed(2);
-
-  console.log(dayTotal)
-
   domUpdates.displayOrderTotalsForGuest(dayTotal, newTotal);
   domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
-
 });
-
-// rooms tab --------->
 
 $('#btn-search-rooms').on('click', () => {
   let inputSearchDate = $('#input-search-rooms').val();
@@ -127,10 +116,8 @@ $('#room-types').on('change', () => {
   let type = $('#room-types').find(':selected').val();
   let date = $('#input-available-rooms-date').val();
   let roomsByDate = hotel.findRoomsAvailableByDate(date);
-  console.log(typeof (date), typeof (type))
   let roomsByType = hotel.filterRoomsByType(roomsByDate, type);
-  console.log('date', roomsByDate)
-  console.log('type', roomsByType)
+  
   domUpdates.displayAvailableRoomsByType(roomsByType, date);
 });
 
@@ -149,9 +136,7 @@ $('#btn-book-room').on('click', () => {
 
 $('#btn-calculate-total').on('click', () => {
   let guest = hotel.currentGuest.name;
-  // let guestBookings = hotel.currentGuest.bookings;
   let total = hotel.currentGuest.calculateTotalBill(hotel.todaysDate, hotel.rooms);
-  console.log(total)
 
   domUpdates.displayGuestTotalBill(guest, total);
 });
