@@ -1,6 +1,6 @@
-import domUpdates from './domUpdates.js'
+import domUpdates from './domUpdates';
 import Guest from './Guest';
-import Room from './Room.js';
+import Room from './Room';
 
 class Hotel {
   constructor(guestsData, ordersData, bookingsData, roomsData) {
@@ -32,6 +32,7 @@ class Hotel {
     let orders = this.findAllOrdersByDate(date);
     let availableRooms = this.findRoomsBookedByDate(date).length;
     let occupancy = this.calculatePercentageRoomsBookedByDate(date);
+    console.log(occupancy)
     let revenue = this.calculateTotalRevenueByDate(date);
     let mostPopular = this.findMostPopularBookingDate(date);
     let leastPopular = this.findDateWithMostAvailableRooms(date);
@@ -160,7 +161,7 @@ class Hotel {
   }
 
   filterRoomsByType(roomsByDate, type) {
-    return roomsByDate.filter(room => room.type === type);
+    return roomsByDate.filter(room => room.roomType === type);
   }
 
   calculateTotalRevenueByDate(date) {

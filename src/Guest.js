@@ -1,6 +1,5 @@
 import Order from './Order';
 import Booking from './Booking';
-import domUpdates from './domUpdates';
 
 class Guest {
   constructor(id, name) {
@@ -23,7 +22,7 @@ class Guest {
       }
       acc[order.date] += order.totalCost;
       return acc;
-    }, {})
+    }, {});
   }
 
   findGuestTotalForOrdersByDate(date) {
@@ -32,13 +31,13 @@ class Guest {
         acc += order.totalCost;
       }
       return acc;
-    }, 0)
+    }, 0);
   }
 
   findGuestTotalForAllOrders() {
     return this.orders.reduce((acc, order) => {
       return acc += order.totalCost;
-    }, 0)
+    }, 0);
   }
 
   createBooking(date, roomNumber) {
@@ -53,8 +52,22 @@ class Guest {
       foodItems: food,
       totalCost: cost
     });
-    domUpdates.displayOrdersForGuest(this.orders);
   }
+
+  calculateTotalBill(date) {
+    let ordersTotal = this.findGuestTotalForOrdersByDate(date);
+    let bookingsTotal = this.bookings.reduce((acc, booking) => {
+      acc += booking.totalCost
+    })
+  }
+
+  findGuestBookingsTotalByDate(date) {
+    if (this.bookings.find(order => order.date === date)) {
+      
+    }
+  }
+
+
 }
 
 export default Guest;

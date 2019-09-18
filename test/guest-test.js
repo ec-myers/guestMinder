@@ -1,13 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-// import spies from 'chai-spies';
 import Guest from '../src/Guest.js'
-
-// chai.use(spies);
-// chai.spy.on(domUpdates,
-//   ['',
-//     '',
-//     ''], () => { });
 
 describe('Guest', () => {
   let guest,
@@ -66,6 +59,5 @@ describe('Guest', () => {
   it('should add a new room service order', () => {
     guest.createRoomServiceOrder('2019/07/29', 'Rustic Concrete Sandwich', 14.9)
     expect(guest.orders.length).to.equal(1);
-    console.log(guest.orders)
-  })
+  });
 });

@@ -1,13 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-// import spies from 'chai-spies';
 import Room from '../src/Room';
-
-// chai.use(spies);
-// chai.spy.on(domUpdates,
-//   ['',
-//     '',
-//     ''], () => { });
 
 describe('Room', () => {
   let room;
@@ -29,7 +22,7 @@ describe('Room', () => {
   });
 
   it('should have a room type', () => {
-    expect(room.type).to.equal('residential suite');
+    expect(room.roomType).to.equal('residential suite');
   });
 
   it('should know if there is a bidet', () => {
