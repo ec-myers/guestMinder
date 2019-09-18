@@ -109,5 +109,10 @@ export default {
       let roomsList = $(`<option data-date='${date}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
       $('#available-rooms').append(roomsList);
     });
+  },
+
+  displayGuestTotalBill(guest, total) {
+    $('#guest-name-bill').text(guest);
+    $('#guest-amount-bill').text(total);
   }
 }

@@ -144,6 +144,15 @@ $('#btn-book-room').on('click', () => {
   domUpdates.displayNewBookingForGuest(date, roomNumber)
 });
 
+$('#btn-calculate-total').on('click', () => {
+  let guest = hotel.currentGuest.name;
+  // let guestBookings = hotel.currentGuest.bookings;
+  let total = hotel.currentGuest.calculateTotalBill(hotel.todaysDate, hotel.rooms);
+  console.log(total)
+
+  domUpdates.displayGuestTotalBill(guest, total);
+});
+
 
 setTimeout(() => {
   Chart.defaults.global.defaultFontColor = 'black';
@@ -216,4 +225,4 @@ setTimeout(() => {
       }
     }
   });
-}, 150)
+}, 200)
