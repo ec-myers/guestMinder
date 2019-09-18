@@ -17,7 +17,7 @@ The design and creation of this application required the implementation of a rob
 ----
 ![guestMinder_mainTab](https://user-images.githubusercontent.com/47042400/65112184-0dbb1200-d99c-11e9-9187-f126d0fa848d.png)
 ![guestMinder_roomsTab](https://user-images.githubusercontent.com/47042400/65112195-17447a00-d99c-11e9-9040-d42fa10c7bae.png)
-![guestMinder_ordersTab](https://user-images.githubusercontent.com/47042400/65112182-0dbb1200-d99c-11e9-9a54-c34e3a297dd6.png)
+![guestMinder_ordersTab](https://user-images.githubusercontent.com/47042400/65112579-5de6a400-d99d-11e9-9c5d-13a434c4d9bd.png)
 ![guestMinder_guestTab](https://user-images.githubusercontent.com/47042400/65112183-0dbb1200-d99c-11e9-8fb8-7b6b01201f99.png)
 
 ---
