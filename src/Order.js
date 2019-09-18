@@ -1,6 +1,8 @@
 class Order {
-  constructor() {
-
+  constructor(date, food, totalCost) {
+    this.date = date;
+    this.foodItems = food;
+    this.totalCost = totalCost;
   }
 }
 

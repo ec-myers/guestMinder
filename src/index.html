@@ -1,53 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
-  <title>Guest Minder</title>
-</head>
+  <head>
+    <title>Guest Minder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script> -->
+  </head>
 <header>
   <div class="header-div-1">
     <img src="/images/suitcase.svg" alt=" ">
     <h1>Guest Minder</h1>
   </div>
   <div class="header-div-2">
-    <h2>Today's Date : <span class="current-date" id="current-date">June 24, 2019</span></h2>
-    <h2>Customer : <span class="current-customer" id="current-customer"></span></h2>
+    <h2>Today's Date: <span class="current-date" id="current-date">June 24, 2019</span></h2>
+    <h2>Viewing: <span class="current-customer" id="current-customer">All Customers</span></h2>
   </div>
 </header>
 <body>
   <div class="tabs">
     <ul class="tabs-nav">
       <li><a href="#main">Main</a></li>
-      <li><a href="#bookings">Bookings</a></li>
+      <li><a href="#rooms">Rooms</a></li>
       <li><a href="#orders">Orders</a></li>
-      <li><a href="#customer">Customer</a></li>
+      <li><a href="#customer">Guest</a></li>
     </ul>
     <div class="tabs-content">
       <div id="main">
-          <p>Dashboard</p>
+        <section class="todays-stats">
+          <h3>Today's Stats</h3>
+          <container>
+            <span id="room-availability-today"></span>
+            <p> rooms are available</p>
+          </container>
+          <container>
+            <span id="occupancy-today"></span>
+            <p>of rooms are booked</p>
+          </container>
+          <container>
+           <span id="total-revenue-today"></span>
+            <p>total revenue</p>
+          </container>
+          <container>
+            <p>It's all about good old fashioned hospitality!</p>
+          </container>
+        </section>
+        <section class="revenue-chart">
+          <p>Today's Revenue</p>
+        <canvas id="revenue-chart" width="400" height="200"></canvas>
+        </section>
+        <section class="occupancy-chart">
+          <p>Today's Occupancy</p>
+        <canvas id="occupancy-chart" width="400" height="200"></canvas>
+        </section>
       </div>
-      <div id="bookings">
-        <p>Bookings Info</p>
+      <div id="rooms">
+        <section class="room-stats" id="room-stats">
+          <p class="booking-stats">Booking Stats</p>
+          <p>The most popular booking date is <span id="most-popular-date"></span></p>
+          <p>The greatest room availability is on <span id="least-popular-date"></span></p>
+        </section>
+        <section>
+          <p>Guest Bookings</p>
+          <ul class="list-guest-bookings"></ul>
+        </section>
+        <section class="search-for-rooms"> 
+          <p>Find Available Rooms</p>
+          <input id="input-available-rooms-date" type="text" placeholder="yyyy/mm/dd">
+          <select id="room-types" disabled>
+            <option>Select a room type</option>
+            <option value="single room">Single Room</option>
+            <option value="suite">Suite</option>
+            <option value="junior suite">Junior Suite</option>
+            <option value="residential suite">Residential Suite</option>
+          </select>
+          <select id="available-rooms" disabled>
+            <option>Choose an available room</option>
+          </select>
+          <button id="btn-book-room" disabled>Book Room</button>
+        </section>
       </div>
-      <div id="orders">
-        <p>Order Info</p>
+      <div class="orders-tab" id="orders">
+        <section>      
+           <p>Orders for Today</p>
+             <ul class="all-orders" id="all-orders"></ul>
+        </section>   
+        <section>
+          <p>Find Room Service Orders</p>
+          <container class="container-search-orders">
+            <input id="input-search-orders"type="text" placeholder="yyyy/mm/dd">
+            <button id="btn-search-orders" disabled>Search</button>
+            <button id="btn-clear-orders">Clear</button>
+          </container>
+          <container class="container-search-result">
+            <h3 id="search-orders-date"></h3>
+            <ul id="search-orders"></ul>
+          </container>
+        </section>
+        <section>
+          <p>Place A Room Service Order</p>
+          <select class="list-menu-items">
+            <option>Choose an item from the menu</option>
+          </select>
+          <button id='btn-order-food' disabled>Place Order</button>
+        </section>
+        <section>
+          <p>Guest Order History</p>
+          <ul class="list-order-history" id="list-order-history"></ul>
+          <p>Guest Room Service Today</p>
+          <container class="order-charges">
+            <h6><span id="order-charges-day"></span></h6>
+          </container>
+          <p>Guest Room Service Total</p>
+          <container class="order-charges">
+            <h6><span id="order-charges-total"></span></h6>
+          </container>
+        </section>
       </div>
       <div id="customer">
         <section class="add-guest form">
           <p>Add a New Guest</p>
           <label>Guest Name</label>
           <input id="input-add-guest"type="text" placeholder=" first and last name">
-          <button id="btn-add-guest">Submit</button>
+           <p class="message" id="added-message-guest"></p>
+          <button id="btn-add-guest" disabled>Add Guest</button>
         </section>
         <section class="search-guest form">
           <p>Search for a Guest</p>
           <label>Guest Name</label>
           <input id="input-search-guest" type="search" placeholder=" first and last name">
-          <p class="error-search-guest" id="error-search-guest"></p>
-          <button id="btn-search-guest">Search</button>
+          <p class="message" id="error-search-guest"></p>
+          <button id="btn-search-guest" disabled>Search</button>
         </section>
       </div>
     </div>

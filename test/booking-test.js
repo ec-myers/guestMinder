@@ -13,7 +13,7 @@ describe('Booking', () => {
   let booking;
 
   beforeEach(() => {
-    booking = new Booking();
+    booking = new Booking('2019/07/29', 1);
   });
 
   it('should be a function', () => {
@@ -22,5 +22,13 @@ describe('Booking', () => {
 
   it('should be an instance of Booking', () => {
     expect(booking).to.be.an.instanceOf(Booking);
+  });
+
+  it('should have a date', () => {
+    expect(booking.date).to.equal('2019/07/29');
+  });
+
+  it('should have a room number', () => {
+    expect(booking.roomNumber).to.equal(1);
   });
 });
