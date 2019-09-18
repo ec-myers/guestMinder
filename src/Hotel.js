@@ -32,7 +32,6 @@ class Hotel {
     let orders = this.findAllOrdersByDate(date);
     let availableRooms = this.findRoomsBookedByDate(date).length;
     let occupancy = this.calculatePercentageRoomsBookedByDate(date);
-    console.log(occupancy)
     let revenue = this.calculateTotalRevenueByDate(date);
     let mostPopular = this.findMostPopularBookingDate(date);
     let leastPopular = this.findDateWithMostAvailableRooms(date);

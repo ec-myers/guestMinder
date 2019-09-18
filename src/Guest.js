@@ -36,7 +36,7 @@ class Guest {
 
   findGuestTotalForAllOrders() {
     return this.orders.reduce((acc, order) => {
-      return acc += order.totalCost;
+      return (acc += order.totalCost);
     }, 0);
   }
 
@@ -54,20 +54,26 @@ class Guest {
     });
   }
 
-  calculateTotalBill(date) {
+  calculateTotalBill(date, roomsArray) {
     let ordersTotal = this.findGuestTotalForOrdersByDate(date);
-    let bookingsTotal = this.bookings.reduce((acc, booking) => {
-      acc += booking.totalCost
-    })
+    let bookingsTotal = this.findGuestBookingsTotalByDate(date, roomsArray);
+
+    return bookingsTotal + ordersTotal;
   }
 
-  findGuestBookingsTotalByDate(date) {
-    if (this.bookings.find(order => order.date === date)) {
-      
-    }
+  findGuestBookingsTotalByDate(date, roomsArray) {
+    return this.bookings.reduce((acc, booking) => {
+      if (booking.date === date) {
+        roomsArray.forEach(room => {
+          if (booking.roomNumber === room.number) {
+            acc += room.costPerNight;  
+          }
+          return acc;
+        })
+      }
+      return acc;
+    }, 0);
   }
-
-
 }
 
 export default Guest;

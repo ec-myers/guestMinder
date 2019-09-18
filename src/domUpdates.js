@@ -4,9 +4,8 @@ export default {
   displayCurrentGuest(currentGuest) {
     $('#current-customer').text(currentGuest);
     $('#input-search-guest').val('');
-    $('#error-search-guest').show();
-    $('#error-search-guest').html(`The guest, ${currentGuest} was found.`);
-    $('#error-search-guest').fadeOut(8000);
+    $('#guest-name-bill').html('');
+    $('#guest-amount-bill').html('');
   },
 
   displaySearchError() {
@@ -49,11 +48,13 @@ export default {
   },
 
   displaySearchOrders(date, orders) {
+    $('#search-orders-date').html('');
+    $('#search-orders').html('');
     $('#search-orders-date').append($(`<h5>Orders for ${date}</h5>`));
     orders.forEach(order => {
       let food = order.foodItems;
       let cost = order.totalCost;
-      let item = $(`<li><h6>${food}, $${cost.toFixed(2)}</h6></li>`);
+      let item = $(`<li><h6>Item: ${food}<br> Cost: $${cost.toFixed(2)}</h6></li>`);
       $('#search-orders').append(item);
     });
   },
@@ -89,6 +90,7 @@ export default {
 
   enableCustomerButtons() {
     $('#btn-order-food').attr('disabled', false);
+    $('#btn-calculate-total').attr('disabled', false);
   },
 
   displayBookingsForGuest(guestBookings) {
@@ -101,7 +103,7 @@ export default {
 
   displayNewBookingForGuest(date, roomNumber) {
     let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);
-    $('.list-guest-bookings').append(newBooking);
+    $('.list-guest-bookings').prepend(newBooking);
   },
 
   displayAvailableRoomsByType(roomsByType, date) {
@@ -109,5 +111,10 @@ export default {
       let roomsList = $(`<option data-date='${date}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
       $('#available-rooms').append(roomsList);
     });
+  },
+
+  displayGuestTotalBill(guest, total) {
+    $('#guest-name-bill').html(guest);
+    $('#guest-amount-bill').html(`$${total}`);
   }
 }
