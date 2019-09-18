@@ -25,7 +25,6 @@ header {
   height: 90px;
   justify-content: space-between;
   color: $main-font-color;
-  // background: rgba(206, 213, 231, 0.2);
 
   .header-div-1 {
     display: flex;
@@ -50,25 +49,13 @@ header {
   }
 
     h2 {
-      margin: 10px 15px 3px 0;
+      margin: 10px 25px 3px 0;
 
       span {
         color: $accent-color;
     }
   }
 }
-
-//tab display
-
-// .tab-active {
-//   background: #D3D3D3;
-//   border-bottom: none;
-//   border-radius: 6px 6px 0 0;
-//   cursor: default;
-// }
-
-
-
 
 .tabs-nav {
   display: flex;
@@ -78,12 +65,10 @@ header {
   li {
     background: $inactive-background-color;
     border-radius: 5px 5px 0 0;
-    // border: $border;
     display: block;
     font-size: 20px;
     font-weight: 500;
     list-style: none;
-    // padding: 10px 0;
     text-align: center;
     width: 100%;
     border: 1px solid grey;
@@ -111,24 +96,22 @@ header {
 } 
 
 .tabs-content {
-  // background-color: #D3D3D3;
   background-color: $active-background-color;
   border-radius: 0 6px 6px 6px;
   border-top: 0;
-  // border: $border;
   clear: both;
   height: 80vh;
   padding: 30px;
   position: relative;
-  // top: -1px;
 }
 
 //Main Tab
 
 #main {
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .todays-stats {
@@ -137,19 +120,63 @@ header {
   flex-direction: column;
   background: rgba(206, 213, 231, 0.8);
   border: 2px solid #9b9b9e;
+  border-radius: 5px;
   width: 23%;
   align-content: space-evenly;
+  padding: 10px;
+
+    h3 {
+      text-align: center;
+      font-weight: 700;
+      background-color: $active-font-color;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+    }
+
+    container {
+      margin: 20px;
+      text-align: center;
+      border: 2px solid $active-font-color;
+      border-radius: 5px;
+      padding: 25px;
+      
+      span {
+        font-size: 38px;
+        color: $active-font-color;
+        font-weight: 700;
+        padding-top: 10px;
+      }
+    }
 }
 
-.main-charts {
+.revenue-chart,
+.occupancy-chart {
   display: flex;
   flex-direction: column;
   height: 400px;
   width: 300px;
+  background: $active-background-color;
+  margin: 20px;
+  border: $border;
+  border-radius: 5px;
+  padding: 15px;
+  width: 35%;
+  justify-content: center;
+
+    p {
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 700;
+      background-color: $active-font-color;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+    }
 }
 
 
-//Customer Tab
+//Guest Tab
 
 .form {
   background: $active-background-color;
@@ -167,7 +194,7 @@ header {
       margin: 10px;
     }
 
-    .error-search-guest {
+    .message {
       color: $active-font-color;
     }
 
@@ -264,6 +291,7 @@ header {
       font-size: 16px;
       margin-bottom: 8px;
       padding: 10px;
+      border-radius: 5px;
     }
   } 
 }
@@ -381,6 +409,11 @@ header {
     h6 {
       font-size: 16px;
       padding: 10px;
+      border: 2px solid $active-font-color;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      padding: 10px;
     }
   }
 }
@@ -493,6 +526,37 @@ header {
 .search-for-rooms {
   display: flex;
   flex-direction: column;
+
+  input {
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    height: 30px;
+    margin: 10px;
+    padding-left: 5px;
+  }
+
+  select {
+    border-radius: 5px;
+    font-size: 16px;
+    height: 35px;
+    margin: 15px 10px;
+  }
+
+  button {
+    background-color: $accent-color;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    height: 35px;
+    margin: 10px;
+
+    &:hover {
+      background: hsla(0,0,43, 0.2);
+      box-shadow: inset 0 0 0 3px $accent-color;
+      color: $accent-color;
+    }
+  }
 }
 
 
