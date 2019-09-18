@@ -36,7 +36,7 @@ class Guest {
 
   findGuestTotalForAllOrders() {
     return this.orders.reduce((acc, order) => {
-      return acc += order.totalCost;
+      return (acc += order.totalCost);
     }, 0);
   }
 

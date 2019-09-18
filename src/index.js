@@ -63,7 +63,7 @@ $('#btn-search-guest').on('click', () => {
     hotel.currentGuest = foundSearchGuest;
     let bookings = hotel.currentGuest.bookings;
     let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
-    let allTotal = hotel.currentGuest.findGuestTotalForAllOrders(hotel.todaysDate);
+    let allTotal = hotel.currentGuest.findGuestTotalForAllOrders(hotel.todaysDate).toFixed(2);
 
     domUpdates.displayCurrentGuest(foundSearchGuest.name);
     domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
@@ -97,10 +97,13 @@ $('#btn-order-food').on('click', (e) => {
   e.preventDefault();
   let food = $('.list-menu-items').find(':selected').data('food');
   let cost = $('.list-menu-items').find(':selected').data('cost');
-  let newTotal = hotel.currentGuest.findGuestTotalForAllOrders();
-  let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate);
-
+  console.log(hotel.todaysDate)
   hotel.currentGuest.createRoomServiceOrder(hotel.todaysDate, food, cost);
+  let newTotal = hotel.currentGuest.findGuestTotalForAllOrders().toFixed(2);
+  let dayTotal = hotel.currentGuest.findGuestTotalForOrdersByDate(hotel.todaysDate).toFixed(2);
+
+  console.log(dayTotal)
+
   domUpdates.displayOrderTotalsForGuest(dayTotal, newTotal);
   domUpdates.displayOrdersForGuest(hotel.currentGuest.orders);
 
@@ -225,4 +228,4 @@ setTimeout(() => {
       }
     }
   });
-}, 200)
+}, 500)

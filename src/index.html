@@ -63,13 +63,15 @@
             <span id="most-popular-date"></span>
           </container>
           <container>
-            <h4>The greatest room availability is on</h4>
+            <h4>The greatest room availability was on</h4>
             <span id="least-popular-date"></span>
           </container>
         </section>
         <section>
           <p>Guest Bookings</p>
-          <ul class="list-guest-bookings"></ul>
+          <ul class="list-guest-bookings">
+            <li>Please select a guest on the guest tab to view this information</li>
+          </ul>
         </section>
         <section class="search-for-rooms"> 
           <p>Find Available Rooms</p>
@@ -113,7 +115,9 @@
         </section>
         <section>
           <p>Guest Order History</p>
-          <ul class="list-order-history" id="list-order-history"></ul>
+          <ul class="list-order-history" id="list-order-history">
+            <li>Please select a guest on the guest tab to view this information</li>
+          </ul>
           <p>Guest Room Service Today</p>
           <container class="order-charges">
             <h6><span id="order-charges-day"></span></h6>
@@ -142,7 +146,7 @@
         <container class="guest-bill">
           <container class="guest-bill-header">
             <h4>Total Bill</h4>
-            <button id="btn-calculate-total">Calculate Total</button>
+            <button id="btn-calculate-total" disabled>Calculate Total</button>
           </container>
           <container class="guest-bill-info">
             <container class="container-guest-bill">
