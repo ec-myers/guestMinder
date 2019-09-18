@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ec-myers/guestMinder.git",
-    "homepage": "http://ec-myers.github.io/guestMinder/"
+    "homepage": "http://ec-myers.github.io/guestMinder/src/index.html"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
