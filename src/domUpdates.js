@@ -1,22 +1,42 @@
 import $ from 'jquery';
-import Guest from './Guest';
 
 export default {
   displayCurrentGuest(currentGuest) {
     $('#current-customer').text(currentGuest);
+    $('#input-search-guest').val('');
+    $('#error-search-guest').show();
+    $('#error-search-guest').html(`The guest, ${currentGuest} was found.`);
+    $('#error-search-guest').fadeOut(8000);
   },
 
   displaySearchError() {
+    $('#input-search-guest').val('');
     $('#error-search-guest').show();
     $('#error-search-guest').html('This guest was not found. Please add them above.');
-    $('#error-search-guest').fadeOut(8000);
+    $('#error-search-guest').fadeOut(6000);
+  },
+
+
+  displayAddedGuestMessage() {
+    $('#input-add-guest').val('');
+    $('#added-message-guest').show();
+    $('#added-message-guest').html('This guest has been successfully added.');
+    $('#added-message-guest').fadeOut(6000);
+  },
+
+  enableAddGuestButton() {
+    $('#btn-add-guest').attr('disabled', false);
+  },
+
+  enableSearchGuestButton() {
+    $('#btn-search-guest').attr('disabled', false);
   },
 
   displayTodaysInformation(todaysDate, availability, occupancy, revenue) {
     $('#current-date').text(todaysDate);
     $('#room-availability-today').text(availability);
-    $('#occupancy-today').text(occupancy);
-    $('#total-revenue-today').text(revenue);
+    $('#occupancy-today').text(`${occupancy}%`);
+    $('#total-revenue-today').text(`$${revenue}`);
   },
 
   displayAllOrders(orders) {
@@ -51,18 +71,15 @@ export default {
 
   displayOrdersForGuest(guestOrders) {
     $('#list-order-history').html('');
-    console.log(guestOrders)
     guestOrders.forEach(order => {
-    let ordersList = $(`<li><h6>${order.date}, ${order.foodItems}, $${order.totalCost.toFixed(2)} </h6></li>`);
-
-    console.log(ordersList)
-      $('#list-order-history').append(ordersList)
+      let ordersList = $(`<li><h6>Date: ${order.date}<br>Item: ${order.foodItems}<br>Cost: $${order.totalCost.toFixed(2)} </h6></li>`);
+      $('#list-order-history').append(ordersList);
     });
   },
 
   displayOrderTotalsForGuest(dayTotal, allTotal) {
-    $('#order-charges-day').text(dayTotal);
-    $('#order-charges-total').text(allTotal);
+    $('#order-charges-day').text(`$${dayTotal}`);
+    $('#order-charges-total').text(`$${allTotal}`);
   },
 
   displayBookingsStats(most, least) {
@@ -70,42 +87,26 @@ export default {
     $('#least-popular-date').text(least);
   },
 
-  // displayAvailableRooms(roomsData) {
-  //   roomsData.forEach(room => {
-  //     $('.tbody-available-rooms').append(
-  //       `<tr class="pointer" id=rooms-${room.number}>
-  //           <td id="num">${room.number}</td>
-  //           <td id="type">${room.type}</td>
-  //           <td id="bidet">${room.bidet}</td>
-  //           <td id="bedSize">${room.bedSize}</td>
-  //           <td id="numBeds">${room.numBeds}</td>
-  //           <td id="costPerNight">$${room.costPerNight}</td>
-  //         </tr>`
-  //     );
-  //   });
-  // },
-
   enableCustomerButtons() {
     $('#btn-order-food').attr('disabled', false);
   },
 
   displayBookingsForGuest(guestBookings) {
     $('.list-guest-bookings').html('');
-    console.log(guestBookings)
     guestBookings.forEach(booking => {
-      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`)
+      let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
       $('.list-guest-bookings').append(bookingsList);
     });
   },
 
   displayNewBookingForGuest(date, roomNumber) {
-    let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`)
+    let newBooking = $(`<li><h6>Date: ${date}<br> Room Number: ${roomNumber}</h6></li>`);
     $('.list-guest-bookings').append(newBooking);
   },
 
   displayAvailableRoomsByType(roomsByType, date) {
     roomsByType.forEach(room => {
-      let roomsList = $(`<option data-date='${date}' data-number='${room.number}' data-type='${room.type}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.type} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
+      let roomsList = $(`<option data-date='${date}' data-number='${room.number}' data-type='${room.roomType}' data-numBeds='${room.numBeds}' data-bedSize='${room.bedSize}' data-bidet='${room.bidet}'>A ${room.roomType} with ${room.numBeds} ${room.bedSize} bed(s), has bidet: ${room.bidet}</option>`)
       $('#available-rooms').append(roomsList);
     });
   }
